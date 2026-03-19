@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPost } from '@/lib/types';
 
 interface RelatedArticlesProps {
@@ -23,8 +24,17 @@ export default function RelatedArticles({ posts }: RelatedArticlesProps) {
               className="group block"
             >
               <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
-                {/* Image Placeholder */}
+                {/* Image Placeholder or Actual Image */}
                 <div className="aspect-[16/10] bg-sage/30 relative overflow-hidden">
+                  {post.featuredImage && (
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover scale-[1.156] group-hover:scale-[1.226] transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent group-hover:opacity-0 transition-opacity duration-300" />
                   <span className="absolute top-4 right-4 bg-linen/90 text-forest text-xs uppercase tracking-wider px-3 py-1 rounded-full">
                     {post.category}

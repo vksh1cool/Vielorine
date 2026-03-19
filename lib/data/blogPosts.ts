@@ -9,6 +9,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Vielorine',
     publishedAt: '2024-12-01',
     readingTime: 8,
+    featuredImage: '/images/tarot-1.jpeg',
     metaDescription: 'Discover the 22 Major Arcana cards and their profound meanings. Learn how these powerful archetypes guide your spiritual journey.',
     keywords: ['major arcana', 'tarot cards', 'tarot meanings', 'spiritual guidance', 'tarot reading'],
     content: `
@@ -118,6 +119,7 @@ Ready to explore how the Major Arcana speaks to your life? [Book a reading](/con
     author: 'Vielorine',
     publishedAt: '2024-12-05',
     readingTime: 6,
+    featuredImage: '/images/tarot-2.jpeg',
     metaDescription: 'Learn 5 essential tarot spreads perfect for beginners. From single card pulls to the Celtic Cross, master the art of tarot reading.',
     keywords: ['tarot spreads', 'beginner tarot', 'how to read tarot', 'tarot guide', 'celtic cross'],
     content: `
@@ -268,6 +270,7 @@ Explore our [shop](/shop) for tarot journals and tools, or [book a reading](/con
     author: 'Vielorine',
     publishedAt: '2024-12-10',
     readingTime: 7,
+    featuredImage: '/images/tarot-3.jpeg',
     metaDescription: 'Transform your space with powerful energy cleansing rituals. Learn sage smudging, crystal placement, and sound healing techniques.',
     keywords: ['energy cleansing', 'spiritual rituals', 'sage smudging', 'crystal healing', 'sacred space'],
     content: `
@@ -420,6 +423,7 @@ Visit our [shop](/shop) for ritual candles, crystals, and cleansing tools to sup
     author: 'Vielorine',
     publishedAt: '2024-12-14',
     readingTime: 9,
+    featuredImage: '/images/tarot-4.jpeg',
     metaDescription: 'Unlock career insights with tarot. Discover spreads and card meanings that illuminate your professional path and true calling.',
     keywords: ['tarot career', 'career guidance', 'professional tarot', 'finding purpose', 'career reading'],
     content: `

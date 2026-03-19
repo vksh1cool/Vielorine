@@ -42,7 +42,7 @@ export default function Journal() {
 
         {/* Articles grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.map((article) => (
+          {articles.slice(0, 3).map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>

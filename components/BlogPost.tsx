@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import { BlogPost as BlogPostType } from '@/lib/types';
 
@@ -52,9 +53,20 @@ export default function BlogPost({ post }: BlogPostProps) {
           </div>
         </div>
 
-        {/* Featured Image Placeholder */}
-        <div className="aspect-[16/9] bg-sage/30 rounded-2xl mb-12 flex items-center justify-center">
-          <span className="text-forest/40 font-sans text-sm">Featured Image</span>
+        {/* Featured Image or Placeholder */}
+        <div className="relative aspect-[16/9] bg-sage/30 rounded-2xl mb-12 overflow-hidden flex items-center justify-center">
+          {post.featuredImage ? (
+            <Image
+              src={post.featuredImage}
+              alt={post.title}
+              fill
+              className="object-cover scale-[1.156]"
+              sizes="(max-width: 768px) 100vw, 800px"
+              priority
+            />
+          ) : (
+            <span className="text-forest/40 font-sans text-sm">Featured Image</span>
+          )}
         </div>
 
         {/* Content */}
