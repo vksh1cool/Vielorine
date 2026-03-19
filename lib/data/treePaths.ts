@@ -214,19 +214,19 @@ export interface FruitPosition {
 
 export const fruitPositions: FruitPosition[] = [
   // Top center - crown of tree
-  { id: 'cosmos', dataType: 'cosmos', positionX: 50, positionY: 26, label: 'Cosmos' },
+  { id: 'cosmos', dataType: 'cosmos', positionX: 50.0, positionY: 33.2, label: 'Cosmos' },
   // Upper branches - left and right
-  { id: 'intuition', dataType: 'intuition', positionX: 36, positionY: 32, label: 'Intuition' },
-  { id: 'wisdom', dataType: 'wisdom', positionX: 64, positionY: 32, label: 'Wisdom' },
+  { id: 'intuition', dataType: 'intuition', positionX: 44.9, positionY: 36.1, label: 'Intuition' },
+  { id: 'wisdom', dataType: 'wisdom', positionX: 55.1, positionY: 36.1, label: 'Wisdom' },
   // Mid branches - spreading outward
-  { id: 'purpose', dataType: 'purpose', positionX: 26, positionY: 40, label: 'Purpose' },
-  { id: 'logic', dataType: 'logic', positionX: 74, positionY: 40, label: 'Logic' },
+  { id: 'purpose', dataType: 'purpose', positionX: 41.3, positionY: 40.0, label: 'Purpose' },
+  { id: 'logic', dataType: 'logic', positionX: 58.7, positionY: 40.0, label: 'Logic' },
   // Lower outer branches
-  { id: 'health', dataType: 'health', positionX: 18, positionY: 50, label: 'Health' },
-  { id: 'wealth', dataType: 'wealth', positionX: 82, positionY: 50, label: 'Wealth' },
+  { id: 'health', dataType: 'health', positionX: 38.4, positionY: 44.8, label: 'Health' },
+  { id: 'wealth', dataType: 'wealth', positionX: 61.6, positionY: 44.8, label: 'Wealth' },
   // Inner lower branches
-  { id: 'love', dataType: 'love', positionX: 38, positionY: 48, label: 'Love' },
-  { id: 'career', dataType: 'career', positionX: 62, positionY: 48, label: 'Career' },
+  { id: 'love', dataType: 'love', positionX: 45.7, positionY: 43.8, label: 'Love' },
+  { id: 'career', dataType: 'career', positionX: 54.3, positionY: 43.8, label: 'Career' },
 ];
 
 // ============================================================================

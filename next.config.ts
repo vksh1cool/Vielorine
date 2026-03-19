@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Ignore ESLint errors during build (Workaround for circular JSON structure bug)
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // Enable static export for deployment
   output: 'export',
   images: {

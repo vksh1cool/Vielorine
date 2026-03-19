@@ -229,21 +229,48 @@ export default function TreeAnimatedWebPSection() {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden bg-black"
     >
-      {/* ── Video Background (scales to fit viewport, shifted to hide watermark) ── */}
-      <video
-        ref={videoRef}
-        src="/videos/tree-scroll-anim-intra.mp4"
-        className="absolute inset-0 w-full h-full object-contain mx-auto pointer-events-none scale-[1.7] md:scale-[1.15] translate-y-[-5%] md:translate-y-[6%]"
-        style={{ 
-          maxWidth: '1400px',
-          objectPosition: 'center 60%', // Adjust vertical focus
-        }}
-        playsInline
-        muted
-        autoPlay
-        preload="auto"
-        poster="/images/tree-fallback.png"
-      />
+      {/* ── Unified Scaled Container for Video & Fruits ── */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-10">
+        <div 
+          className="relative w-full h-full flex items-center justify-center scale-[1.7] md:scale-[1.15] translate-y-[-5%] md:translate-y-[6%]"
+          style={{ maxWidth: '1400px' }}
+        >
+          {/* Inner 16:9 container that exactly matches video dimensions */}
+          <div 
+            className="relative w-full"
+            style={{
+               aspectRatio: '16/9',
+               maxWidth: 'calc(100vh * (16/9))'
+            }}
+          >
+            <video
+              ref={videoRef}
+              src="/videos/tree-scroll-anim-intra.mp4"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              style={{ objectPosition: 'center 60%' }}
+              playsInline
+              muted
+              autoPlay
+              preload="auto"
+              poster="/images/tree-fallback.png"
+            />
+            {/* ── Fruit Overlay (centered over the tree) ── */}
+            <div
+              ref={fruitOverlayRef}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+              <div className="relative w-full h-full pointer-events-auto">
+                <FruitOverlay
+                  onFruitClick={handleFruitClick}
+                  onFruitHover={handleFruitHover}
+                  hoveredFruit={hoveredFruit}
+                  prefersReducedMotion={false}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* ── Canvas overlay for sand particle effect ── */}
       <canvas
@@ -252,7 +279,7 @@ export default function TreeAnimatedWebPSection() {
       />
 
       {/* ── Content wrapper (everything that dissolves) ── */}
-      <div ref={contentWrapRef} className="absolute inset-0 z-10">
+      <div ref={contentWrapRef} className="absolute inset-0 z-20 pointer-events-none">
 
         {/* ── Left Quotes ── */}
         <div
@@ -292,20 +319,7 @@ export default function TreeAnimatedWebPSection() {
           ))}
         </div>
 
-        {/* ── Fruit Overlay (centered over the tree) ── */}
-        <div
-          ref={fruitOverlayRef}
-          className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none"
-        >
-          <div className="relative w-[150%] md:w-[60%] max-w-[800px] aspect-[16/9] md:aspect-[4/3] -translate-y-[5%] md:translate-y-0 pointer-events-auto">
-            <FruitOverlay
-              onFruitClick={handleFruitClick}
-              onFruitHover={handleFruitHover}
-              hoveredFruit={hoveredFruit}
-              prefersReducedMotion={false}
-            />
-          </div>
-        </div>
+
 
         {/* ── Bottom Text ── */}
         <div
