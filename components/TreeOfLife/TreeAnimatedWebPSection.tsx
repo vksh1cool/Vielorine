@@ -318,6 +318,9 @@ export default function TreeAnimatedWebPSection() {
           >
             Every path is connected.
           </p>
+          <p className="font-sans text-sage/90 text-sm md:text-base tracking-[0.3em] uppercase mt-6 drop-shadow-md font-medium">
+            The only way is through.
+          </p>
         </div>
       </div>
 

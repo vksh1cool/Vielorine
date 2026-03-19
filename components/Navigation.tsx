@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,11 +8,34 @@ import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Highlight nav when scrolled past very top
+      setIsScrolled(currentScrollY > 20);
+      
+      // Hide on scroll down, show on scroll up (don't hide if mobile menu is open)
+      if (currentScrollY > lastScrollY.current && currentScrollY > 150 && !isMobileMenuOpen) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobileMenuOpen]);
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/#about', label: 'About' },
     { href: '/blogs', label: 'Blogs' },
     { href: '/shop', label: 'Shop' },
     { href: '/contact', label: 'Contact' },
@@ -32,7 +55,15 @@ export default function Navigation() {
   const isHashLink = (href: string) => href.includes('#');
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-linen/90 border-b border-sage/20">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
+        ${isHidden ? '-translate-y-full' : 'translate-y-0'}
+        ${isScrolled 
+          ? 'py-2 backdrop-blur-md bg-linen/95 border-b border-sage/20 shadow-sm' 
+          : 'py-6 bg-transparent border-transparent'
+        }
+      `}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo Only */}

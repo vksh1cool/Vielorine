@@ -22,11 +22,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
       {/* Image with 16:10 aspect ratio */}
       <div className="relative aspect-[16/10] bg-sage/30 rounded-xl overflow-hidden mb-4 shadow-lg">
         <Image
-          src="/images/tarot-reading.png"
+          src={article.image || "/images/tarot-reading.png"}
           alt={article.title}
           width={600}
           height={375}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover scale-[1.12] transition-transform duration-700 group-hover:scale-125"
         />
         {/* Overlay that fades on hover */}
         <div className="absolute inset-0 bg-forest/20 group-hover:bg-transparent transition-colors duration-300" />

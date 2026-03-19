@@ -22,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Product Image */}
       <div className="relative w-full aspect-square bg-linen rounded-xl overflow-hidden mb-4 shadow-sm">
         <Image
-          src="/images/crystals.png"
+          src={product.image}
           alt={product.name}
           width={400}
           height={400}
@@ -45,13 +45,16 @@ export default function ProductCard({ product }: ProductCardProps) {
         ${product.price.toFixed(2)}
       </p>
 
-      {/* Floating "+" button - appears on hover */}
-      <button 
+      {/* Floating "+" button - links to WhatsApp */}
+      <a 
+        href={`https://wa.me/918800964169?text=${encodeURIComponent(`Hi! I would like to inquire about the ${product.name} from the Apothecary.`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
         className="absolute bottom-4 right-4 w-10 h-10 bg-forest rounded-full flex items-center justify-center text-linen opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-forest/90"
-        aria-label={`Add ${product.name} to cart`}
+        aria-label={`Inquire about ${product.name} on WhatsApp`}
       >
         <Plus className="w-5 h-5" />
-      </button>
+      </a>
     </div>
   );
 }

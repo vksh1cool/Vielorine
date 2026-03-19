@@ -16,7 +16,6 @@ interface Particle {
 export default function BackgroundParticles() {
   const { x: cursorX, y: cursorY } = useCursorPosition();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [time, setTime] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -32,14 +31,7 @@ export default function BackgroundParticles() {
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
-  // Continuous vibration animation
-  useEffect(() => {
-    if (!isMounted) return;
-    const interval = setInterval(() => {
-      setTime((t) => (t + 0.08) % (Math.PI * 20));
-    }, 30);
-    return () => clearInterval(interval);
-  }, [isMounted]);
+  // No more setInterval - we use native CSS animations for idle vibration
 
   // Generate particles with stable positions but unique vibration properties
   const particles = useMemo<Particle[]>(() => {
@@ -55,13 +47,9 @@ export default function BackgroundParticles() {
     }));
   }, [dimensions.width, dimensions.height]);
 
-  // Calculate particle position with vibration and cursor interaction
+  // Calculate particle position with cursor interaction
   const getParticlePosition = (particle: Particle) => {
-    // Base vibration (always active)
-    const vibrateX = Math.sin(time * particle.vibrateSpeed + particle.id) * particle.vibrateAmount;
-    const vibrateY = Math.cos(time * particle.vibrateSpeed * 0.7 + particle.id * 0.5) * particle.vibrateAmount;
-
-    // Cursor interaction (additional displacement when cursor is near)
+    // Base vibration is now handled by pure CSS. We only calculate cursor displacement here.
     let cursorDisplaceX = 0;
     let cursorDisplaceY = 0;
 
@@ -81,10 +69,9 @@ export default function BackgroundParticles() {
     }
 
     return {
-      x: particle.baseX + vibrateX + cursorDisplaceX,
-      y: particle.baseY + vibrateY + cursorDisplaceY,
-      // Opacity pulses slightly
-      opacity: particle.opacity * (0.85 + Math.sin(time * 0.5 + particle.id) * 0.15),
+      x: particle.baseX + cursorDisplaceX,
+      y: particle.baseY + cursorDisplaceY,
+      opacity: particle.opacity, // Base opacity (CSS adds pulse)
     };
   };
 
@@ -95,6 +82,13 @@ export default function BackgroundParticles() {
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       aria-hidden="true"
     >
+      <style jsx>{`
+        @keyframes particleFloat {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(8px, -6px) scale(1.1); }
+          66% { transform: translate(-6px, 8px) scale(0.9); }
+        }
+      `}</style>
       <svg
         width={dimensions.width}
         height={dimensions.height}
@@ -112,6 +106,8 @@ export default function BackgroundParticles() {
               opacity={pos.opacity}
               style={{
                 transition: 'cx 0.15s ease-out, cy 0.15s ease-out',
+                animation: `${`particleFloat ${Math.max(4, particle.vibrateSpeed * 8)}s ease-in-out infinite alternate ${particle.id * 0.5}s`}`,
+                transformOrigin: `${pos.x}px ${pos.y}px`
               }}
             />
           );

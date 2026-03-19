@@ -50,26 +50,26 @@ export default function FruitOverlay({
         <style jsx>{`
           @keyframes applePulse {
             0%, 100% { 
-              transform: scale(1);
-              filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)) drop-shadow(0 0 8px rgba(200,80,80,0.3));
+              transform: scale(1) rotate(0deg);
+              filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)) drop-shadow(0 0 8px rgba(200,80,80,0.4));
             }
             50% { 
-              transform: scale(1.08);
-              filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)) drop-shadow(0 0 18px rgba(200,80,80,0.5));
+              transform: scale(1.15) rotate(4deg);
+              filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(200,80,80,0.7));
             }
           }
           @keyframes appleBob {
             0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-3px); }
+            50% { transform: translate(-50%, -50%) translateY(-4px); }
           }
           @keyframes ringPulse {
             0%, 100% { 
               transform: scale(1);
-              opacity: 0.4;
+              opacity: 0.3;
             }
             50% { 
-              transform: scale(1.3);
-              opacity: 0.7;
+              transform: scale(1.4);
+              opacity: 0.8;
             }
           }
         `}</style>
@@ -82,7 +82,7 @@ export default function FruitOverlay({
         return (
           <button
             key={fruit.id}
-            className="absolute pointer-events-auto transition-all duration-300 ease-out"
+            className="absolute pointer-events-auto transition-all duration-300 ease-out flex items-center justify-center group"
             style={{
               left: `${fruit.positionX}%`,
               top: `${fruit.positionY}%`,
@@ -101,11 +101,9 @@ export default function FruitOverlay({
             <div
               className="absolute rounded-full"
               style={{
-                width: '56px',
-                height: '56px',
-                left: '-12px',
-                top: '-12px',
-                background: `radial-gradient(circle, rgba(200,80,80,${isHovered ? 0.6 : 0.35}) 0%, transparent 70%)`,
+                width: '64px',
+                height: '64px',
+                background: `radial-gradient(circle, rgba(200,80,80,${isHovered ? 0.4 : 0.2}) 0%, transparent 65%)`,
                 transition: 'background 0.3s ease',
                 animation: !prefersReducedMotion && !isHovered
                   ? `ringPulse ${2.5 + index * 0.2}s ease-in-out infinite ${index * 0.3}s`
@@ -113,13 +111,13 @@ export default function FruitOverlay({
               }}
             />
 
-            {/* Apple image with pulse animation */}
+            {/* Apple Image with pulse animation */}
             <div
-              className="relative w-8 h-8 md:w-10 md:h-10"
+              className="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center"
               style={{
                 filter: isHovered 
-                  ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(200,80,80,0.6))' 
-                  : 'drop-shadow(0 3px 6px rgba(0,0,0,0.35)) drop-shadow(0 0 10px rgba(200,80,80,0.35))',
+                  ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.6)) drop-shadow(0 0 25px rgba(200,80,80,0.8))' 
+                  : 'drop-shadow(0 3px 6px rgba(0,0,0,0.4)) drop-shadow(0 0 12px rgba(200,80,80,0.4))',
                 transition: 'filter 0.3s ease, transform 0.3s ease',
                 animation: !prefersReducedMotion && !isHovered
                   ? `applePulse ${2 + index * 0.15}s ease-in-out infinite ${index * 0.2}s`
@@ -130,7 +128,7 @@ export default function FruitOverlay({
                 src="/images/apple.png"
                 alt="Apple"
                 fill
-                className="object-contain"
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
                 sizes="40px"
               />
             </div>

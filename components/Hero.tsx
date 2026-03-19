@@ -11,17 +11,10 @@ export function calculateHeroTreeRotation(scrollY: number): number {
 
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0);
-  const [wheelRotation, setWheelRotation] = useState(0);
   const [cursorTilt, setCursorTilt] = useState({ x: 0, y: 0 });
   const wheelContainerRef = useRef<HTMLDivElement>(null);
 
-  // Continuous wheel rotation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWheelRotation((r) => (r + 0.15) % 360);
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
+  // No more continuous wheel rotation via state, will use CSS animation
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,13 +103,20 @@ export default function Hero() {
           transition: 'transform 0.4s ease-out, opacity 0.3s ease-out',
         }}
       >
-        <div 
-          className="w-[62vw] max-w-[580px] aspect-square"
-          style={{
-            transform: `rotate(${wheelRotation}deg)`,
-          }}
-        >
-          <ZodiacWheelSVG />
+        {/* Zodiac SVG Background with Parallax and CSS Spin */}
+        <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-40 mix-blend-multiply">
+          <style jsx>{`
+            @keyframes slowSpin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+          <div 
+            className="w-[70vw] max-w-[700px] aspect-square"
+            style={{ animation: 'slowSpin 120s linear infinite' }}
+          >
+            <ZodiacWheelSVG />
+          </div>
         </div>
       </div>
 

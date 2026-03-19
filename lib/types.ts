@@ -15,6 +15,7 @@ export interface Product {
   description: string;
   price: number;
   icon: string;
+  image: string;
 }
 
 export interface Article {
@@ -23,6 +24,7 @@ export interface Article {
   excerpt: string;
   category: 'Tarot Basics' | 'Spiritual' | 'Guide';
   slug: string;
+  image?: string;
 }
 
 export interface BlogPost {
