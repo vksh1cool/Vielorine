@@ -1,0 +1,609 @@
+import { BlogPost } from '../types';
+
+export const blogPosts: BlogPost[] = [
+  {
+    slug: 'understanding-major-arcana',
+    title: 'Understanding the Major Arcana: A Complete Guide',
+    excerpt: "The fool's journey is a metaphor for life itself. Discover how these powerful archetypes influence your daily path and spiritual growth.",
+    category: 'Tarot Basics',
+    author: 'Vielorine',
+    publishedAt: '2024-12-01',
+    readingTime: 8,
+    metaDescription: 'Discover the 22 Major Arcana cards and their profound meanings. Learn how these powerful archetypes guide your spiritual journey.',
+    keywords: ['major arcana', 'tarot cards', 'tarot meanings', 'spiritual guidance', 'tarot reading'],
+    content: `
+## The Journey Through the Major Arcana
+
+The Major Arcana represents the most significant spiritual lessons and karmic influences in a tarot reading. These 22 cards tell the story of the Fool's Journey—a metaphor for the path we all walk through life, from innocence to enlightenment.
+
+### What Makes the Major Arcana Special
+
+Unlike the Minor Arcana, which deals with day-to-day events and situations, the Major Arcana speaks to the deeper currents of our existence. When these cards appear in a reading, they signal important life lessons, turning points, and spiritual awakenings that shape who we become.
+
+## The First Seven Cards: The Material World
+
+### 0. The Fool
+The Fool represents new beginnings, innocence, and the leap of faith we take when starting any journey. This card reminds us that every expert was once a beginner, and that embracing uncertainty is the first step toward growth.
+
+### I. The Magician
+The Magician embodies manifestation and willpower. With all four elements at his disposal, he reminds us that we have everything we need to create our reality. This card encourages you to take action and trust in your abilities.
+
+### II. The High Priestess
+She guards the mysteries of the subconscious mind. The High Priestess invites you to trust your intuition and look beyond the surface. Sometimes the answers we seek are already within us.
+
+### III. The Empress
+Abundance, fertility, and nurturing energy flow through The Empress. She represents the creative force of nature and encourages us to connect with our senses and embrace pleasure.
+
+### IV. The Emperor
+Structure, authority, and stability define The Emperor. He represents the masculine principle of order and reminds us that discipline and boundaries are necessary for growth.
+
+### V. The Hierophant
+The Hierophant represents tradition, spiritual wisdom, and conventional approaches. He encourages us to seek guidance from established institutions while also questioning what no longer serves us.
+
+### VI. The Lovers
+Beyond romantic love, The Lovers card speaks to choices, values, and alignment. It asks us to consider what we truly desire and to make decisions that honor our authentic selves.
+
+## The Middle Journey: Cards VII-XIV
+
+### VII. The Chariot
+Victory through willpower and determination. The Chariot reminds us that success comes from harnessing opposing forces and moving forward with confidence.
+
+### VIII. Strength
+True strength is gentle. This card shows us that courage comes from compassion, and that we can overcome our fears through patience and inner fortitude.
+
+### IX. The Hermit
+The Hermit invites us into solitude and introspection. Sometimes we must withdraw from the world to find our inner light and wisdom.
+
+### X. Wheel of Fortune
+Change is the only constant. The Wheel reminds us that life moves in cycles, and that both good fortune and challenges are temporary.
+
+### XI. Justice
+Balance, fairness, and truth. Justice asks us to examine our actions and their consequences, reminding us that we reap what we sow.
+
+### XII. The Hanged Man
+Surrender and new perspectives. The Hanged Man teaches us that sometimes we must let go of control to gain true understanding.
+
+### XIII. Death
+Transformation and endings that lead to new beginnings. Death rarely means physical death—instead, it signals profound change and the release of what no longer serves us.
+
+### XIV. Temperance
+Balance, patience, and moderation. Temperance teaches us the art of blending opposites and finding the middle path.
+
+## The Final Journey: Cards XV-XXI
+
+### XV. The Devil
+Our shadow self and attachments. The Devil reveals the chains we place on ourselves and invites us to examine our addictions and limiting beliefs.
+
+### XVI. The Tower
+Sudden upheaval and revelation. The Tower destroys false structures so that truth can emerge. Though challenging, this card often precedes profound liberation.
+
+### XVII. The Star
+Hope, inspiration, and healing. After the destruction of The Tower, The Star offers renewal and reminds us to have faith in the universe.
+
+### XVIII. The Moon
+Illusion, intuition, and the subconscious. The Moon invites us to explore our dreams and face our fears, knowing that not everything is as it seems.
+
+### XIX. The Sun
+Joy, success, and vitality. The Sun brings clarity and celebration, reminding us of the simple pleasures that make life worth living.
+
+### XX. Judgement
+Rebirth, inner calling, and absolution. Judgement asks us to reflect on our past and answer the call to become our highest selves.
+
+### XXI. The World
+Completion, integration, and accomplishment. The World represents the end of one cycle and the beginning of another, celebrating all we have learned and become.
+
+## Working with the Major Arcana
+
+When Major Arcana cards appear in your readings, pay special attention. These cards often indicate:
+
+- **Life lessons** that are currently active in your journey
+- **Karmic influences** that may be affecting your path
+- **Spiritual growth opportunities** presenting themselves
+- **Major decisions** or turning points ahead
+
+Consider keeping a tarot journal to track which Major Arcana cards appear frequently in your readings. Patterns often emerge that reveal your current spiritual curriculum.
+
+## Conclusion
+
+The Major Arcana offers a map for the soul's journey through life. By understanding these archetypal energies, we gain insight into our own path and the universal experiences that connect us all. Whether you're new to tarot or a seasoned reader, returning to these 22 cards always reveals new layers of wisdom.
+
+Ready to explore how the Major Arcana speaks to your life? [Book a reading](/contact) with Vielorine and discover the messages waiting for you.
+    `
+  },
+  {
+    slug: 'tarot-spreads-beginners',
+    title: 'Essential Tarot Spreads for Beginners',
+    excerpt: 'Start your tarot journey with these foundational spreads that will help you develop your intuition and reading skills.',
+    category: 'Guide',
+    author: 'Vielorine',
+    publishedAt: '2024-12-05',
+    readingTime: 6,
+    metaDescription: 'Learn 5 essential tarot spreads perfect for beginners. From single card pulls to the Celtic Cross, master the art of tarot reading.',
+    keywords: ['tarot spreads', 'beginner tarot', 'how to read tarot', 'tarot guide', 'celtic cross'],
+    content: `
+## Getting Started with Tarot Spreads
+
+A tarot spread is the pattern in which you lay out cards during a reading. Each position in a spread has a specific meaning, and the combination of card and position creates the message. As a beginner, starting with simple spreads helps you build confidence and develop your intuitive connection with the cards.
+
+## 1. The Single Card Pull
+
+The simplest and most powerful spread for beginners.
+
+### How to Use It
+- Shuffle your deck while focusing on your question or intention
+- Draw one card
+- Reflect on its meaning in relation to your question
+
+### Best For
+- Daily guidance and reflection
+- Quick answers to specific questions
+- Building familiarity with individual cards
+- Morning rituals and meditation
+
+### Tips for Success
+Don't underestimate the single card pull. Many experienced readers use this spread daily. The key is to sit with the card, notice your initial reaction, and let its message unfold throughout the day.
+
+## 2. The Three-Card Spread
+
+The most versatile spread in tarot, adaptable to countless situations.
+
+### Classic Interpretations
+
+**Past - Present - Future**
+- Card 1: Influences from the past affecting your situation
+- Card 2: Current energies and circumstances
+- Card 3: Likely outcome if current path continues
+
+**Mind - Body - Spirit**
+- Card 1: Mental state and thoughts
+- Card 2: Physical circumstances and actions
+- Card 3: Spiritual lessons and higher guidance
+
+**Situation - Action - Outcome**
+- Card 1: The current situation as it truly is
+- Card 2: Recommended action or approach
+- Card 3: Potential result of taking that action
+
+### How to Read It
+Lay three cards in a horizontal line from left to right. Read each card individually first, then look for connections and themes across all three.
+
+## 3. The Five-Card Cross
+
+A step up in complexity that provides more detailed guidance.
+
+### Layout
+
+Position 2 at top, Position 4 on left, Position 1 in center, Position 5 on right, Position 3 at bottom.
+
+### Positions
+1. **Center**: The heart of the matter—your current situation
+2. **Above**: What's on your mind—conscious thoughts and goals
+3. **Below**: What's beneath—subconscious influences and hidden factors
+4. **Left**: The past—what's behind you or fading
+5. **Right**: The future—what's approaching or developing
+
+### When to Use
+This spread works well when you need more context than a three-card spread provides but aren't ready for larger spreads. It's excellent for exploring a specific situation from multiple angles.
+
+## 4. The Relationship Spread
+
+Perfect for understanding dynamics between two people or entities.
+
+### Layout
+
+Position 1 top-left, Position 2 top-right, Position 3 center, Position 4 bottom-left, Position 5 bottom-right, Position 6 at very bottom center.
+
+### Positions
+1. **You**: Your energy and perspective in the relationship
+2. **Them**: Their energy and perspective
+3. **The Connection**: What brings you together
+4. **Your Needs**: What you need from this relationship
+5. **Their Needs**: What they need from this relationship
+6. **Potential**: Where this relationship could go
+
+### Applications
+Use this spread for romantic relationships, friendships, business partnerships, or even your relationship with a project or goal.
+
+## 5. The Celtic Cross
+
+The most famous tarot spread, offering comprehensive insight.
+
+### Layout
+
+A cross formation with Position 1 in center crossed by Position 2, Position 3 below, Position 4 to left, Position 5 above, Position 6 to right. A vertical column on the far right with Positions 7, 8, 9, 10 from bottom to top.
+
+### Positions
+1. **Present**: Current situation and energies
+2. **Challenge**: What crosses you—obstacles or influences
+3. **Foundation**: Root of the situation
+4. **Recent Past**: What's just passed or passing
+5. **Possible Outcome**: Best possible outcome
+6. **Near Future**: What's coming soon
+7. **Your Attitude**: How you see yourself in this situation
+8. **External Influences**: Environment and others' influence
+9. **Hopes and Fears**: What you hope for or fear
+10. **Final Outcome**: Where things are heading
+
+### Tips for the Celtic Cross
+- Don't rush—this spread contains a lot of information
+- Look for patterns: multiple cards of the same suit, repeated numbers, or Major Arcana clusters
+- Read the story: cards 3-4-1-6 often tell a narrative arc
+- Consider the relationship between positions 5 and 10
+
+## General Tips for Reading Spreads
+
+### Before You Begin
+- Clear your space and mind
+- Shuffle thoroughly while focusing on your question
+- Trust your first instinct when drawing cards
+
+### During the Reading
+- Look at the overall picture before diving into individual cards
+- Notice which cards draw your attention first
+- Pay attention to the imagery and how cards relate to each other
+- Trust your intuition over memorized meanings
+
+### After the Reading
+- Take notes in a tarot journal
+- Photograph your spreads for future reference
+- Revisit readings after time has passed to see how they unfolded
+
+## Building Your Practice
+
+Start with single card pulls for a week, then move to three-card spreads. Once you're comfortable, try the five-card cross. Save the Celtic Cross for when you feel confident with the basics.
+
+Remember: there's no "right" way to read tarot. These spreads are frameworks, not rules. As you develop your practice, you may modify positions or create your own spreads entirely.
+
+## Ready to Deepen Your Practice?
+
+Explore our [shop](/shop) for tarot journals and tools, or [book a reading](/contact) to experience how a professional reader works with these spreads.
+    `
+  },
+
+  {
+    slug: 'cleansing-energy-rituals',
+    title: 'Sacred Rituals for Cleansing Your Energy Space',
+    excerpt: 'Before a reading, the environment matters. Learn simple techniques using sage, crystals, and sound to prepare your sacred space.',
+    category: 'Spiritual',
+    author: 'Vielorine',
+    publishedAt: '2024-12-10',
+    readingTime: 7,
+    metaDescription: 'Transform your space with powerful energy cleansing rituals. Learn sage smudging, crystal placement, and sound healing techniques.',
+    keywords: ['energy cleansing', 'spiritual rituals', 'sage smudging', 'crystal healing', 'sacred space'],
+    content: `
+## Why Energy Cleansing Matters
+
+Every space holds energy—the residue of emotions, thoughts, and experiences that have occurred within it. Before conducting a tarot reading or any spiritual practice, cleansing your space creates a clear container for intuitive work. Think of it as washing your hands before cooking: it's a simple act of preparation that makes everything that follows more pure.
+
+## Signs Your Space Needs Cleansing
+
+- The room feels heavy or stagnant
+- You've had conflict or intense emotions in the space
+- You're starting a new spiritual practice
+- The energy feels "off" without explanation
+- You've moved into a new home or office
+- After illness or difficult times
+
+## Sage Smudging: The Classic Approach
+
+White sage has been used for centuries by Indigenous peoples for purification. When burned, it releases negative ions that can literally change the energy of a space.
+
+### What You'll Need
+- White sage bundle or loose sage
+- Heat-safe dish or abalone shell
+- Feather or fan (optional)
+- Matches or lighter
+
+### The Process
+
+1. **Set Your Intention**: Before lighting the sage, take a moment to center yourself. State your intention clearly, either aloud or silently: "I cleanse this space of all negative energy and invite only light and love."
+
+2. **Light the Sage**: Hold the sage at a 45-degree angle and light it. Let it burn for about 20 seconds, then gently blow out the flame. The sage should smolder and produce smoke.
+
+3. **Move Through the Space**: Starting at the entrance, move clockwise around the room. Pay special attention to corners, where energy tends to collect. Use your hand or a feather to direct the smoke.
+
+4. **Don't Forget**: Closets, under furniture, and around electronics often hold stagnant energy.
+
+5. **Close the Ritual**: Return to where you started. Thank the sage for its cleansing properties and safely extinguish it in your dish.
+
+### Safety Notes
+- Never leave burning sage unattended
+- Keep windows slightly open for ventilation
+- Be mindful of smoke detectors
+- Ensure the sage is fully extinguished when finished
+
+## Crystal Cleansing and Placement
+
+Crystals can both cleanse a space and maintain its energetic clarity over time.
+
+### Best Crystals for Space Cleansing
+
+**Black Tourmaline**
+The ultimate protection stone. Place near entrances to absorb negative energy before it enters your space.
+
+**Selenite**
+Self-cleansing and purifying, selenite towers or wands can be placed in corners to continuously clear the energy. Selenite also cleanses other crystals.
+
+**Clear Quartz**
+The master healer amplifies positive energy and can be programmed with your intentions for the space.
+
+**Amethyst**
+Creates a peaceful, spiritually elevated atmosphere. Perfect for meditation corners and reading spaces.
+
+### Crystal Placement Strategy
+
+- **Entrance**: Black tourmaline for protection
+- **Corners**: Selenite to prevent energy stagnation
+- **Center**: Clear quartz to amplify positive energy
+- **Reading Area**: Amethyst for spiritual connection
+
+### Cleansing Your Crystals
+Crystals absorb energy and need regular cleansing:
+- Place in moonlight overnight (especially during full moon)
+- Bury in earth for 24 hours
+- Use sound vibration from singing bowls
+- Place on a selenite charging plate
+
+## Sound Cleansing
+
+Sound vibration is one of the most effective ways to shift energy quickly.
+
+### Singing Bowls
+Tibetan singing bowls produce frequencies that break up stagnant energy. Walk through your space while playing the bowl, letting the sound fill every corner.
+
+### Bells and Chimes
+The clear, high tone of bells cuts through heavy energy. Ring a bell in each corner of the room and near doorways.
+
+### Clapping
+The simplest method—clap your hands loudly in corners and areas that feel stuck. The sharp sound disperses stagnant energy.
+
+### Music and Mantras
+Playing sacred music, chanting, or even singing can shift the energy of a space. Choose sounds that feel uplifting and aligned with your intentions.
+
+## Creating a Daily Practice
+
+You don't need to perform elaborate rituals every day. Here's a simple daily practice:
+
+### Morning
+- Open windows to let fresh air circulate
+- Light a candle with intention
+- Ring a small bell or chime once
+
+### Before Readings
+- Burn a small amount of sage or palo santo
+- Hold your crystals and set your intention
+- Take three deep breaths to center yourself
+
+### Evening
+- Express gratitude for the day
+- Extinguish candles mindfully
+- Place protective crystals near entrances
+
+## Seasonal Deep Cleansing
+
+Perform a thorough cleansing at least four times a year, ideally at the solstices and equinoxes:
+
+1. Physical cleaning first—dust, vacuum, organize
+2. Full sage smudging of entire space
+3. Cleanse and recharge all crystals
+4. Sound cleansing with singing bowl
+5. Set intentions for the coming season
+
+## Creating Your Sacred Reading Space
+
+For tarot readings, your space should feel:
+- **Clear**: Free of clutter and stagnant energy
+- **Protected**: Boundaries set against unwanted influences
+- **Elevated**: Conducive to spiritual connection
+- **Personal**: Reflecting your unique practice
+
+Consider adding:
+- A dedicated altar or reading surface
+- Meaningful objects that inspire you
+- Soft, natural lighting
+- Comfortable seating for you and any clients
+
+## The Power of Intention
+
+Remember: the most important element of any cleansing ritual is your intention. The sage, crystals, and sounds are tools that help focus and amplify your will. Approach each cleansing with presence and purpose, and your space will reflect that clarity.
+
+## Explore Our Tools
+
+Visit our [shop](/shop) for ritual candles, crystals, and cleansing tools to support your practice. Or [connect with us](/contact) to learn more about creating your perfect sacred space.
+    `
+  },
+  {
+    slug: 'tarot-career-guidance',
+    title: 'Using Tarot for Career Clarity and Purpose',
+    excerpt: 'Feeling stuck in your professional life? Discover how tarot can illuminate your true calling and guide career decisions.',
+    category: 'Guide',
+    author: 'Vielorine',
+    publishedAt: '2024-12-14',
+    readingTime: 9,
+    metaDescription: 'Unlock career insights with tarot. Discover spreads and card meanings that illuminate your professional path and true calling.',
+    keywords: ['tarot career', 'career guidance', 'professional tarot', 'finding purpose', 'career reading'],
+    content: `
+## Tarot as a Career Compass
+
+In a world of endless career possibilities, finding your true path can feel overwhelming. Tarot offers a unique tool for career exploration—not by predicting your future job title, but by illuminating your authentic desires, hidden obstacles, and the energies surrounding your professional life.
+
+## Why Tarot Works for Career Questions
+
+Career decisions involve more than logic. They touch on:
+- **Identity**: Who am I, and who do I want to become?
+- **Values**: What matters most to me?
+- **Fear**: What's holding me back?
+- **Potential**: What am I capable of achieving?
+
+Tarot accesses the subconscious mind, where these deeper truths reside. A reading can reveal patterns you haven't consciously recognized and possibilities you haven't allowed yourself to consider.
+
+## Key Cards for Career Readings
+
+### Cards Indicating Career Success
+
+**The Sun**
+Unambiguous success and achievement. When The Sun appears in a career reading, it signals a period of professional fulfillment and recognition.
+
+**The World**
+Completion and mastery. This card suggests you're reaching the culmination of a professional cycle or achieving a significant goal.
+
+**The Emperor**
+Leadership and authority. The Emperor indicates potential for advancement into management or establishing your own enterprise.
+
+**Three of Pentacles**
+Skilled work and collaboration. This card celebrates craftsmanship and suggests success through teamwork and expertise.
+
+**Six of Wands**
+Victory and public recognition. Expect acknowledgment for your achievements and possible promotion.
+
+### Cards Suggesting Change
+
+**The Tower**
+Sudden upheaval. In career readings, The Tower often indicates unexpected job loss or dramatic workplace changes. While challenging, it clears the way for something better.
+
+**Death**
+Transformation. This card rarely means literal job death—instead, it signals the end of one career phase and the beginning of another.
+
+**Eight of Cups**
+Walking away. This card suggests it may be time to leave a situation that no longer fulfills you, even if it looks good on paper.
+
+**The Fool**
+New beginnings. The Fool encourages taking a leap into unknown professional territory.
+
+### Cards Revealing Obstacles
+
+**The Devil**
+Feeling trapped. In career contexts, The Devil often represents staying in a job for money or security while feeling spiritually unfulfilled.
+
+**Five of Pentacles**
+Financial worry. This card may indicate fear of financial instability preventing career changes.
+
+**Nine of Swords**
+Anxiety and overthinking. Career-related stress and worry that may be worse than the actual situation.
+
+**Four of Cups**
+Apathy and missed opportunities. You may be so focused on what's wrong that you're missing new possibilities.
+
+## Career-Focused Tarot Spreads
+
+### The Career Crossroads Spread
+
+Use when facing a specific career decision.
+
+**Layout:** Position 1 at top, Positions 2 and 3 below it side by side, Position 4 below them, Position 5 at bottom.
+
+**Positions:**
+1. The core issue or decision
+2. Option A—staying/one path
+3. Option B—leaving/another path
+4. What you need to know
+5. Guidance for moving forward
+
+### The Purpose Discovery Spread
+
+For exploring your true calling.
+
+**Layout:** Positions 1, 2, 3 in a row at top, Position 4 centered below, Position 5 at bottom center.
+
+**Positions:**
+1. Your natural gifts and talents
+2. What brings you joy
+3. What the world needs from you
+4. Obstacles to living your purpose
+5. Next step toward alignment
+
+### The Career Health Check
+
+For assessing your current professional situation.
+
+**Layout:** Five cards in a horizontal row.
+
+**Positions:**
+1. Your current career energy
+2. What's working well
+3. What needs attention
+4. Hidden influences
+5. Potential for growth
+
+## Interpreting Career Readings
+
+### Look for Patterns
+
+- **Multiple Pentacles**: Focus on practical matters, finances, material success
+- **Multiple Wands**: Creative energy, passion projects, entrepreneurship
+- **Multiple Swords**: Communication, intellectual work, potential conflict
+- **Multiple Cups**: Emotional fulfillment, creative fields, helping professions
+- **Multiple Major Arcana**: Significant life lessons and karmic career themes
+
+### Consider Reversals
+
+Reversed cards in career readings often indicate:
+- Blocked energy or delayed progress
+- Internal rather than external focus needed
+- The shadow side of a card's meaning
+- Resistance to necessary change
+
+### Trust Your Gut
+
+Notice which cards trigger strong reactions. Your emotional response often holds important information about your true desires and fears.
+
+## Common Career Questions
+
+### "Should I leave my job?"
+
+Rather than asking yes/no questions, try:
+- "What do I need to understand about my current position?"
+- "What would leaving this job teach me?"
+- "What's keeping me in this situation?"
+
+### "What career is right for me?"
+
+Explore with:
+- "What are my untapped professional gifts?"
+- "What kind of work would fulfill my soul?"
+- "What's blocking me from pursuing my true calling?"
+
+### "How can I advance?"
+
+Ask:
+- "What skills should I develop?"
+- "What's my next professional lesson?"
+- "How can I best contribute in my current role?"
+
+## Beyond the Reading
+
+Tarot provides insight, but action creates change. After a career reading:
+
+1. **Journal** about what came up and your reactions
+2. **Identify** one concrete step you can take
+3. **Set a timeline** for making decisions
+4. **Return** to the cards as situations evolve
+
+## When to Seek Professional Guidance
+
+While self-readings are valuable, consider a professional reading when:
+- You're facing a major career decision
+- You feel too emotionally invested to read objectively
+- You want deeper interpretation and dialogue
+- You're at a significant career crossroads
+
+## Your Career Journey Awaits
+
+The cards don't determine your career—you do. Tarot simply illuminates the path, revealing what your conscious mind might miss. Trust the process, trust yourself, and remember that every career journey is unique.
+
+Ready to explore your professional path? [Book a career-focused reading](/contact) with Vielorine, or visit our [shop](/shop) for tarot journals to track your career insights over time.
+    `
+  }
+];
+
+// Helper function to get blog post by slug
+export function getBlogPost(slug: string): BlogPost | undefined {
+  return blogPosts.find(post => post.slug === slug);
+}
+
+// Helper function to get related posts by category
+export function getRelatedPosts(currentSlug: string, category: string, limit: number = 3): BlogPost[] {
+  return blogPosts
+    .filter(post => post.slug !== currentSlug && post.category === category)
+    .slice(0, limit);
+}

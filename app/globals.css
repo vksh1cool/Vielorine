@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F3EDE2;
+  cursor: none;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3EDE2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B88A55;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A7B88A;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B88A55 #F3EDE2;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #A7B88A;
+  color: #F3EDE2;
+}
+
+::-moz-selection {
+  background-color: #A7B88A;
+  color: #F3EDE2;
+}
+
+/* Restore default cursor on mobile */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
+

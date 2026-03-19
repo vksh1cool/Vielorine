@@ -1,0 +1,33 @@
+// Product data for Vielorine Shop section
+import { Product } from '../types';
+
+export const products: Product[] = [
+  {
+    id: 'amethyst-bracelet',
+    name: 'Amethyst Bracelet',
+    description: 'For intuition & peace',
+    price: 24.00,
+    icon: 'gem'
+  },
+  {
+    id: 'tarot-journal',
+    name: 'Tarot Journal',
+    description: 'Linen bound, gold foil',
+    price: 32.00,
+    icon: 'book-open'
+  },
+  {
+    id: 'ritual-candle',
+    name: 'Ritual Candle',
+    description: 'Sage & Sandalwood',
+    price: 18.00,
+    icon: 'flame'
+  },
+  {
+    id: 'vielorine-deck',
+    name: 'Vielorine Deck',
+    description: 'Limited Edition',
+    price: 55.00,
+    icon: 'layers'
+  }
+];
