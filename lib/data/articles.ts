@@ -25,5 +25,13 @@ export const articles: Article[] = [
     category: 'Guide',
     slug: 'tarot-career-clarity',
     image: '/images/tarot-3.jpeg'
+  },
+  {
+    id: '4',
+    title: 'Connecting with Your Spirit Guides',
+    excerpt: 'Learn how to open your intuition and receive messages from the subtle realms. Your guides are always waiting to communicate with you.',
+    category: 'Spiritual',
+    slug: 'connecting-spirit-guides',
+    image: '/images/tarot-4.jpeg'
   }
 ];

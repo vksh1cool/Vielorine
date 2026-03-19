@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${manrope.variable}`}>
+      <body className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
         <BackgroundParticles />
         <CustomCursor />
         <Navigation />

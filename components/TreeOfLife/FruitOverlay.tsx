@@ -101,8 +101,8 @@ export default function FruitOverlay({
             <div
               className="absolute rounded-full"
               style={{
-                width: '64px',
-                height: '64px',
+                width: isMobile ? '36px' : '64px',
+                height: isMobile ? '36px' : '64px',
                 background: `radial-gradient(circle, rgba(200,80,80,${isHovered ? 0.4 : 0.2}) 0%, transparent 65%)`,
                 transition: 'background 0.3s ease',
                 animation: !prefersReducedMotion && !isHovered
@@ -113,7 +113,7 @@ export default function FruitOverlay({
 
             {/* Apple Image with pulse animation */}
             <div
-              className="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center"
+              className="relative w-5 h-5 md:w-10 md:h-10 flex items-center justify-center"
               style={{
                 filter: isHovered 
                   ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.6)) drop-shadow(0 0 25px rgba(200,80,80,0.8))' 
@@ -129,18 +129,18 @@ export default function FruitOverlay({
                 alt="Apple"
                 fill
                 className="object-contain group-hover:scale-110 transition-transform duration-300"
-                sizes="40px"
+                sizes="(max-width: 768px) 20px, 40px"
               />
             </div>
 
             {/* Label on hover */}
             <span
-              className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+              className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[10px] md:text-sm font-medium transition-all duration-300 ${
                 isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
               style={{
                 top: '100%',
-                marginTop: '6px',
+                marginTop: isMobile ? '2px' : '6px',
                 backgroundColor: colors.linen,
                 color: colors.forest,
                 boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
