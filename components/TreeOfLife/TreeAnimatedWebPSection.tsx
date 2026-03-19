@@ -111,8 +111,8 @@ export default function TreeAnimatedWebPSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=2000', // Reduced from 3500 to make the animation finish faster with less scrolling
-          scrub: 1.2,    // Increased slightly to 1.2 to give the video decoder more smoothing time
+          end: '+=3000', // Increased scroll distance to make rapid scrolls less jarring
+          scrub: 1.5,    // Increased smoothing delay to allow hardware video decoder to catch up beautifully
           pin: true,
           anticipatePin: 1,
         },
@@ -231,11 +231,10 @@ export default function TreeAnimatedWebPSection() {
       <video
         ref={videoRef}
         src="/videos/tree-scroll-anim-intra.mp4"
-        className="absolute inset-0 w-full h-full object-contain mx-auto pointer-events-none"
+        className="absolute inset-0 w-full h-full object-contain mx-auto pointer-events-none scale-[1.7] md:scale-[1.15] translate-y-[-5%] md:translate-y-[6%]"
         style={{ 
           maxWidth: '1400px',
           objectPosition: 'center 60%', // Adjust vertical focus
-          transform: 'scale(1.15) translateY(6%)' // Scale up slightly and push down to crop watermark
         }}
         playsInline
         muted
@@ -254,12 +253,12 @@ export default function TreeAnimatedWebPSection() {
         {/* ── Left Quotes ── */}
         <div
           ref={quotesLeftRef}
-          className="absolute left-0 top-0 bottom-0 w-[220px] lg:w-[280px] flex flex-col justify-center gap-12 pl-6 lg:pl-10 pointer-events-none z-20"
+          className="absolute left-0 top-[15%] md:top-0 bottom-auto md:bottom-0 w-[140px] md:w-[220px] lg:w-[280px] flex flex-col justify-center gap-6 md:gap-12 pl-2 md:pl-6 lg:pl-10 pointer-events-none z-20"
         >
           {leftQuotes.map((quote) => (
             <p
               key={quote.id}
-              className="font-serif text-base lg:text-lg italic leading-relaxed"
+              className="font-serif text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed drop-shadow-lg"
               style={{
                 color: colors.gold,
                 textShadow: '0 0 20px rgba(217,195,154,0.3), 0 2px 4px rgba(0,0,0,0.6)',
@@ -273,12 +272,12 @@ export default function TreeAnimatedWebPSection() {
         {/* ── Right Quotes ── */}
         <div
           ref={quotesRightRef}
-          className="absolute right-0 top-0 bottom-0 w-[220px] lg:w-[280px] flex flex-col justify-center gap-12 pr-6 lg:pr-10 pointer-events-none z-20"
+          className="absolute right-0 top-[15%] md:top-0 bottom-auto md:bottom-0 w-[140px] md:w-[220px] lg:w-[280px] flex flex-col justify-center gap-6 md:gap-12 pr-2 md:pr-6 lg:pr-10 pointer-events-none z-20"
         >
           {rightQuotes.map((quote) => (
             <p
               key={quote.id}
-              className="font-serif text-base lg:text-lg italic leading-relaxed text-right"
+              className="font-serif text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed text-right drop-shadow-lg"
               style={{
                 color: colors.gold,
                 textShadow: '0 0 20px rgba(217,195,154,0.3), 0 2px 4px rgba(0,0,0,0.6)',
@@ -292,9 +291,9 @@ export default function TreeAnimatedWebPSection() {
         {/* ── Fruit Overlay (centered over the tree) ── */}
         <div
           ref={fruitOverlayRef}
-          className="absolute inset-0 flex items-center justify-center z-15"
+          className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none"
         >
-          <div className="relative w-[60%] max-w-[800px] aspect-[4/3]">
+          <div className="relative w-[150%] md:w-[60%] max-w-[800px] aspect-[16/9] md:aspect-[4/3] -translate-y-[5%] md:translate-y-0 pointer-events-auto">
             <FruitOverlay
               onFruitClick={handleFruitClick}
               onFruitHover={handleFruitHover}
