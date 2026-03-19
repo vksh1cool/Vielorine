@@ -105,14 +105,16 @@ export default function TreeAnimatedWebPSection() {
 
       if (tl) { tl.scrollTrigger?.kill(); tl.kill(); }
 
+      video.pause(); // Stop autoplay, let GSAP control it
+
       const dur = video.duration;
 
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=3000', // Increased scroll distance to make rapid scrolls less jarring
-          scrub: 1.5,    // Increased smoothing delay to allow hardware video decoder to catch up beautifully
+          end: '+=2000', // Restored original tighter scrolling duration
+          scrub: 1.2,    // Restored tight tracking
           pin: true,
           anticipatePin: 1,
         },
@@ -238,7 +240,9 @@ export default function TreeAnimatedWebPSection() {
         }}
         playsInline
         muted
+        autoPlay
         preload="auto"
+        poster="/images/tree-fallback.png"
       />
 
       {/* ── Canvas overlay for sand particle effect ── */}
@@ -316,9 +320,6 @@ export default function TreeAnimatedWebPSection() {
             }}
           >
             Every path is connected.
-          </p>
-          <p className="font-sans text-sage/90 text-sm md:text-base tracking-[0.3em] uppercase mt-6 drop-shadow-md font-medium">
-            The only way is through.
           </p>
         </div>
       </div>
