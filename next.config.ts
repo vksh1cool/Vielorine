@@ -5,11 +5,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Enable static export for deployment
-  output: 'export',
   images: {
-    // Disable image optimization for static export
-    unoptimized: true,
     // Enable modern image formats for optimization
     formats: ['image/avif', 'image/webp'],
     // Device sizes for responsive images
