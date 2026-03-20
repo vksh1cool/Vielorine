@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[7508,["992","static/chunks/992-9b9a43fb9dafe13f.js","696","static/chunks/696-a6b02918b830b097.js","177","static/chunks/app/layout-cb58bd053dbab631.js"],"default"]
+3:I[6255,["992","static/chunks/992-9b9a43fb9dafe13f.js","696","static/chunks/696-a6b02918b830b097.js","177","static/chunks/app/layout-cb58bd053dbab631.js"],"CustomCursor"]
+4:I[9153,["992","static/chunks/992-9b9a43fb9dafe13f.js","696","static/chunks/696-a6b02918b830b097.js","177","static/chunks/app/layout-cb58bd053dbab631.js"],"default"]
+5:I[7555,[],""]
+6:I[1295,[],""]
+7:I[1087,["992","static/chunks/992-9b9a43fb9dafe13f.js","696","static/chunks/696-a6b02918b830b097.js","177","static/chunks/app/layout-cb58bd053dbab631.js"],"default"]
+9:I[9665,[],"OutletBoundary"]
+b:I[4911,[],"AsyncMetadataOutlet"]
+d:I[9665,[],"ViewportBoundary"]
+f:I[9665,[],"MetadataBoundary"]
+10:"$Sreact.suspense"
+12:I[8393,[],""]
+:HL["/_next/static/media/4c9affa5bc8f420e-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/af4bf8399d1aacdf-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/dbf1d22dd650592c.css","style"]
+0:{"P":null,"b":"Eodj4hK9AEfIqzyPgZNN3","p":"","c":["","blogs","tarot-spreads-beginners",""],"i":false,"f":[[["",{"children":["blogs",{"children":[["slug","tarot-spreads-beginners","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/dbf1d22dd650592c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"__variable_7a34d3 __variable_e2b71d","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}]]}]}]]}],{"children":["blogs",["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","tarot-spreads-beginners","d"],["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L8",null,["$","$L9",null,{"children":["$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Lf",null,{"children":["$","div",null,{"hidden":true,"children":["$","$10",null,{"fallback":null,"children":"$L11"}]}]}]]}],false]],"m":"$undefined","G":["$12",[]],"s":false,"S":true}
+13:I[6874,["992","static/chunks/992-9b9a43fb9dafe13f.js","744","static/chunks/app/blogs/%5Bslug%5D/page-ee5df5556680be32.js"],""]
+14:I[3063,["992","static/chunks/992-9b9a43fb9dafe13f.js","744","static/chunks/app/blogs/%5Bslug%5D/page-ee5df5556680be32.js"],"Image"]
+15:T1815,<h2>Getting Started with Tarot Spreads</h2>
+<p>A tarot spread is the pattern in which you lay out cards during a reading. Each position in a spread has a specific meaning, and the combination of card and position creates the message. As a beginner, starting with simple spreads helps you build confidence and develop your intuitive connection with the cards.</p>
+<h2>1. The Single Card Pull</h2>
+<p>The simplest and most powerful spread for beginners.</p>
+<h3>How to Use It</h3>
+- Shuffle your deck while focusing on your question or intention
+- Draw one card
+- Reflect on its meaning in relation to your question
+<h3>Best For</h3>
+- Daily guidance and reflection
+- Quick answers to specific questions
+- Building familiarity with individual cards
+- Morning rituals and meditation
+<h3>Tips for Success</h3>
+Don't underestimate the single card pull. Many experienced readers use this spread daily. The key is to sit with the card, notice your initial reaction, and let its message unfold throughout the day.
+<h2>2. The Three-Card Spread</h2>
+<p>The most versatile spread in tarot, adaptable to countless situations.</p>
+<h3>Classic Interpretations</h3>
+<p><strong>Past - Present - Future</strong><br>- Card 1: Influences from the past affecting your situation<br>- Card 2: Current energies and circumstances<br>- Card 3: Likely outcome if current path continues</p>
+<p><strong>Mind - Body - Spirit</strong><br>- Card 1: Mental state and thoughts<br>- Card 2: Physical circumstances and actions<br>- Card 3: Spiritual lessons and higher guidance</p>
+<p><strong>Situation - Action - Outcome</strong><br>- Card 1: The current situation as it truly is<br>- Card 2: Recommended action or approach<br>- Card 3: Potential result of taking that action</p>
+<h3>How to Read It</h3>
+Lay three cards in a horizontal line from left to right. Read each card individually first, then look for connections and themes across all three.
+<h2>3. The Five-Card Cross</h2>
+<p>A step up in complexity that provides more detailed guidance.</p>
+<h3>Layout</h3>
+<p>Position 2 at top, Position 4 on left, Position 1 in center, Position 5 on right, Position 3 at bottom.</p>
+<h3>Positions</h3>
+1. <strong>Center</strong>: The heart of the matter—your current situation
+2. <strong>Above</strong>: What's on your mind—conscious thoughts and goals
+3. <strong>Below</strong>: What's beneath—subconscious influences and hidden factors
+4. <strong>Left</strong>: The past—what's behind you or fading
+5. <strong>Right</strong>: The future—what's approaching or developing
+<h3>When to Use</h3>
+This spread works well when you need more context than a three-card spread provides but aren't ready for larger spreads. It's excellent for exploring a specific situation from multiple angles.
+<h2>4. The Relationship Spread</h2>
+<p>Perfect for understanding dynamics between two people or entities.</p>
+<h3>Layout</h3>
+<p>Position 1 top-left, Position 2 top-right, Position 3 center, Position 4 bottom-left, Position 5 bottom-right, Position 6 at very bottom center.</p>
+<h3>Positions</h3>
+1. <strong>You</strong>: Your energy and perspective in the relationship
+2. <strong>Them</strong>: Their energy and perspective
+3. <strong>The Connection</strong>: What brings you together
+4. <strong>Your Needs</strong>: What you need from this relationship
+5. <strong>Their Needs</strong>: What they need from this relationship
+6. <strong>Potential</strong>: Where this relationship could go
+<h3>Applications</h3>
+Use this spread for romantic relationships, friendships, business partnerships, or even your relationship with a project or goal.
+<h2>5. The Celtic Cross</h2>
+<p>The most famous tarot spread, offering comprehensive insight.</p>
+<h3>Layout</h3>
+<p>A cross formation with Position 1 in center crossed by Position 2, Position 3 below, Position 4 to left, Position 5 above, Position 6 to right. A vertical column on the far right with Positions 7, 8, 9, 10 from bottom to top.</p>
+<h3>Positions</h3>
+1. <strong>Present</strong>: Current situation and energies
+2. <strong>Challenge</strong>: What crosses you—obstacles or influences
+3. <strong>Foundation</strong>: Root of the situation
+4. <strong>Recent Past</strong>: What's just passed or passing
+5. <strong>Possible Outcome</strong>: Best possible outcome
+6. <strong>Near Future</strong>: What's coming soon
+7. <strong>Your Attitude</strong>: How you see yourself in this situation
+8. <strong>External Influences</strong>: Environment and others' influence
+9. <strong>Hopes and Fears</strong>: What you hope for or fear
+10. <strong>Final Outcome</strong>: Where things are heading
+<h3>Tips for the Celtic Cross</h3>
+- Don't rush—this spread contains a lot of information
+- Look for patterns: multiple cards of the same suit, repeated numbers, or Major Arcana clusters
+- Read the story: cards 3-4-1-6 often tell a narrative arc
+- Consider the relationship between positions 5 and 10
+<h2>General Tips for Reading Spreads</h2>
+<h3>Before You Begin</h3>
+- Clear your space and mind
+- Shuffle thoroughly while focusing on your question
+- Trust your first instinct when drawing cards
+<h3>During the Reading</h3>
+- Look at the overall picture before diving into individual cards
+- Notice which cards draw your attention first
+- Pay attention to the imagery and how cards relate to each other
+- Trust your intuition over memorized meanings
+<h3>After the Reading</h3>
+- Take notes in a tarot journal
+- Photograph your spreads for future reference
+- Revisit readings after time has passed to see how they unfolded
+<h2>Building Your Practice</h2>
+<p>Start with single card pulls for a week, then move to three-card spreads. Once you're comfortable, try the five-card cross. Save the Celtic Cross for when you feel confident with the basics.</p>
+<p>Remember: there's no "right" way to read tarot. These spreads are frameworks, not rules. As you develop your practice, you may modify positions or create your own spreads entirely.</p>
+<h2>Ready to Deepen Your Practice?</h2>
+<p>Explore our <a href="/shop">shop</a> for tarot journals and tools, or <a href="/contact">book a reading</a> to experience how a professional reader works with these spreads.</p>8:["$","main",null,{"className":"min-h-screen bg-linen","children":[["$","article",null,{"className":"pt-32 pb-16 px-6 md:px-12 lg:px-24","children":["$","div",null,{"className":"max-w-3xl mx-auto","children":[["$","$L13",null,{"href":"/blogs","className":"inline-flex items-center gap-2 text-forest hover:text-wood transition-colors mb-8 interactive","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-left w-4 h-4","aria-hidden":"true","children":[["$","path","1l729n",{"d":"m12 19-7-7 7-7"}],["$","path","x3x0zl",{"d":"M19 12H5"}],"$undefined"]}],["$","span",null,{"className":"font-sans text-sm","children":"Back to Blogs"}]]}],["$","span",null,{"className":"inline-block bg-sage/30 text-forest text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-4","children":"Guide"}],["$","h1",null,{"className":"font-serif text-3xl md:text-4xl lg:text-5xl text-forest mb-6 leading-tight","children":"Essential Tarot Spreads for Beginners"}],["$","div",null,{"className":"flex flex-wrap items-center gap-4 md:gap-6 text-shadow/60 text-sm mb-8 pb-8 border-b border-sage/20","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-user w-4 h-4","aria-hidden":"true","children":[["$","path","975kel",{"d":"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"}],["$","circle","17ys0d",{"cx":"12","cy":"7","r":"4"}],"$undefined"]}],["$","span",null,{"children":"Vielorine"}]]}],["$","div",null,{"className":"flex items-center gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calendar w-4 h-4","aria-hidden":"true","children":[["$","path","1cmpym",{"d":"M8 2v4"}],["$","path","4m81vk",{"d":"M16 2v4"}],["$","rect","1hopcy",{"width":"18","height":"18","x":"3","y":"4","rx":"2"}],["$","path","8toen8",{"d":"M3 10h18"}],"$undefined"]}],["$","span",null,{"children":"December 5, 2024"}]]}],["$","div",null,{"className":"flex items-center gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-clock w-4 h-4","aria-hidden":"true","children":[["$","path","mmk7yg",{"d":"M12 6v6l4 2"}],["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],"$undefined"]}],["$","span",null,{"children":[6," min read"]}]]}]]}],["$","div",null,{"className":"relative aspect-[16/9] bg-sage/30 rounded-2xl mb-12 overflow-hidden flex items-center justify-center","children":["$","$L14",null,{"src":"/images/tarot-2.jpeg","alt":"Essential Tarot Spreads for Beginners","fill":true,"className":"object-cover scale-[1.156]","sizes":"(max-width: 768px) 100vw, 800px","priority":true}]}],["$","div",null,{"className":"prose prose-lg max-w-none   prose-headings:font-serif prose-headings:text-forest   prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4   prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3   prose-p:font-sans prose-p:text-shadow/80 prose-p:leading-relaxed   prose-a:text-forest prose-a:underline prose-a:hover:text-wood   prose-strong:text-forest prose-strong:font-medium   prose-ul:font-sans prose-ul:text-shadow/80   prose-ol:font-sans prose-ol:text-shadow/80   prose-li:my-1   prose-blockquote:border-l-gold prose-blockquote:bg-sage/10 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg   prose-code:bg-sage/20 prose-code:px-1 prose-code:rounded prose-code:text-forest   prose-pre:bg-forest prose-pre:text-linen","dangerouslySetInnerHTML":{"__html":"$15"}}],"$L16"]}]}],"$L17","$L18"]}]
+16:["$","div",null,{"className":"mt-12 pt-8 border-t border-sage/20","children":[["$","h3",null,{"className":"font-sans text-sm text-shadow/50 uppercase tracking-wider mb-4","children":"Topics"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","span","tarot spreads",{"className":"bg-sage/20 text-forest text-sm px-3 py-1 rounded-full","children":"tarot spreads"}],["$","span","beginner tarot",{"className":"bg-sage/20 text-forest text-sm px-3 py-1 rounded-full","children":"beginner tarot"}],["$","span","how to read tarot",{"className":"bg-sage/20 text-forest text-sm px-3 py-1 rounded-full","children":"how to read tarot"}],["$","span","tarot guide",{"className":"bg-sage/20 text-forest text-sm px-3 py-1 rounded-full","children":"tarot guide"}],["$","span","celtic cross",{"className":"bg-sage/20 text-forest text-sm px-3 py-1 rounded-full","children":"celtic cross"}]]}]]}]
+17:["$","section",null,{"className":"py-16 px-6 md:px-12 lg:px-24 bg-sage/10","children":["$","div",null,{"className":"max-w-7xl mx-auto","children":[["$","h2",null,{"className":"font-serif text-2xl md:text-3xl text-forest text-center mb-12","children":"Continue Your Journey"}],["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8","children":[["$","$L13","tarot-career-guidance",{"href":"/blogs/tarot-career-guidance","className":"group block","children":["$","article",null,{"className":"bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300","children":[["$","div",null,{"className":"aspect-[16/10] bg-sage/30 relative overflow-hidden","children":[["$","$L14",null,{"src":"/images/tarot-4.jpeg","alt":"Using Tarot for Career Clarity and Purpose","fill":true,"className":"object-cover scale-[1.156] group-hover:scale-[1.226] transition-transform duration-500","sizes":"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}],["$","div",null,{"className":"absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent group-hover:opacity-0 transition-opacity duration-300"}],["$","span",null,{"className":"absolute top-4 right-4 bg-linen/90 text-forest text-xs uppercase tracking-wider px-3 py-1 rounded-full","children":"Guide"}]]}],["$","div",null,{"className":"p-6","children":[["$","h3",null,{"className":"font-serif text-lg text-forest group-hover:text-wood transition-colors duration-300 mb-2","children":"Using Tarot for Career Clarity and Purpose"}],["$","p",null,{"className":"font-sans text-shadow/70 text-sm line-clamp-2","children":"Feeling stuck in your professional life? Discover how tarot can illuminate your true calling and guide career decisions."}]]}]]}]}]]}]]}]}]
+18:["$","footer",null,{"className":"bg-linen border-t border-shadow/10","children":[["$","div",null,{"className":"py-16 px-6 md:px-12 lg:px-24","children":["$","div",null,{"className":"max-w-7xl mx-auto text-center","children":[["$","$L13",null,{"href":"/","className":"flex flex-col items-center gap-3 mb-8 hover:opacity-80 transition-opacity","children":[["$","$L14",null,{"src":"/images/vielorine-logo.png","alt":"Vielorine","width":60,"height":60,"className":"rounded-full"}],["$","span",null,{"className":"font-serif text-3xl text-forest","children":"Vielorine"}]]}],["$","nav",null,{"className":"flex flex-wrap justify-center gap-6 md:gap-8 mt-8","children":[["$","$L13","Home",{"href":"/","className":"text-shadow/70 hover:text-forest transition-colors text-sm","children":"Home"}],["$","$L13","Blogs",{"href":"/blogs","className":"text-shadow/70 hover:text-forest transition-colors text-sm","children":"Blogs"}],["$","$L13","Shop",{"href":"/shop","className":"text-shadow/70 hover:text-forest transition-colors text-sm","children":"Shop"}],["$","$L13","Contact",{"href":"/contact","className":"text-shadow/70 hover:text-forest transition-colors text-sm","children":"Contact"}]]}]]}]}],["$","div",null,{"className":"py-8 px-6 md:px-12 lg:px-24 border-t border-shadow/10","children":["$","div",null,{"className":"max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left","children":[["$","p",null,{"className":"text-shadow/50 text-sm","children":["© ",2026," Vielorine. All rights reserved."]}],["$","p",null,{"className":"text-shadow/50 text-sm","children":["Designed & Developed by"," ",["$","a",null,{"href":"https://launchpixel.in","target":"_blank","rel":"noopener noreferrer","className":"text-forest hover:text-gold transition-colors font-medium","children":"LaunchPixel"}]]}]]}]}]]}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+a:null
+19:I[8175,[],"IconMark"]
+c:{"metadata":[["$","title","0",{"children":"Essential Tarot Spreads for Beginners | Vielorine Blog"}],["$","meta","1",{"name":"description","content":"Learn 5 essential tarot spreads perfect for beginners. From single card pulls to the Celtic Cross, master the art of tarot reading."}],["$","meta","2",{"name":"keywords","content":"tarot spreads,beginner tarot,how to read tarot,tarot guide,celtic cross"}],["$","link","3",{"rel":"canonical","href":"https://vielorine.com/blogs/tarot-spreads-beginners/"}],["$","meta","4",{"property":"og:title","content":"Essential Tarot Spreads for Beginners"}],["$","meta","5",{"property":"og:description","content":"Learn 5 essential tarot spreads perfect for beginners. From single card pulls to the Celtic Cross, master the art of tarot reading."}],["$","meta","6",{"property":"og:url","content":"https://vielorine.com/blogs/tarot-spreads-beginners/"}],["$","meta","7",{"property":"og:type","content":"article"}],["$","meta","8",{"property":"article:published_time","content":"2024-12-05"}],["$","meta","9",{"property":"article:author","content":"Vielorine"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"Essential Tarot Spreads for Beginners"}],["$","meta","12",{"name":"twitter:description","content":"Learn 5 essential tarot spreads perfect for beginners. From single card pulls to the Celtic Cross, master the art of tarot reading."}],["$","link","13",{"rel":"icon","href":"/favicon.png","type":"image/png"}],["$","link","14",{"rel":"apple-touch-icon","href":"/favicon.png"}],["$","$L19","15",{}]],"error":null,"digest":"$undefined"}
+11:"$c:metadata"

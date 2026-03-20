@@ -53,7 +53,7 @@ function animateParticles(
     for (const p of particles) {
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.03; // gentle gravity
+      p.vy += 0.03;
       p.alpha -= p.decay;
       if (p.alpha <= 0) continue;
       anyVisible = true;
@@ -84,6 +84,12 @@ export default function TreeAnimatedWebPSection() {
   const textOverlayRef = useRef<HTMLDivElement>(null);
   const fruitOverlayRef = useRef<HTMLDivElement>(null);
   const contentWrapRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // rAF-based video seeking for smooth playback
+  const targetTimeRef = useRef(0);
+  const currentTimeRef = useRef(0);
+  const rafIdRef = useRef<number>(0);
 
   const [selectedFruit, setSelectedFruit] = useState<string | null>(null);
   const [hoveredFruit, setHoveredFruit] = useState<string | null>(null);
@@ -92,9 +98,33 @@ export default function TreeAnimatedWebPSection() {
   const handleFruitHover = useCallback((id: string | null) => setHoveredFruit(id), []);
   const handleClosePopup = useCallback(() => setSelectedFruit(null), []);
 
+  // ── Smooth video seeking loop ──
+  // Instead of letting GSAP directly tween currentTime (which causes jank due to
+  // async video decode), we interpolate toward the target time each frame.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const seekLoop = () => {
+      const target = targetTimeRef.current;
+      const current = currentTimeRef.current;
+      // Lerp toward target — 0.15 factor = smooth but responsive
+      const next = current + (target - current) * 0.15;
+      // Only seek if difference is significant enough to avoid micro-seeks
+      if (Math.abs(next - current) > 0.01) {
+        video.currentTime = next;
+        currentTimeRef.current = next;
+      }
+      rafIdRef.current = requestAnimationFrame(seekLoop);
+    };
+
+    rafIdRef.current = requestAnimationFrame(seekLoop);
+    return () => cancelAnimationFrame(rafIdRef.current);
+  }, []);
+
   // ── Main GSAP ScrollTrigger ──
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || prefersReducedMotion) return;
 
     let tl: gsap.core.Timeline | null = null;
     let stopParticles: (() => void) | null = null;
@@ -105,7 +135,10 @@ export default function TreeAnimatedWebPSection() {
 
       if (tl) { tl.scrollTrigger?.kill(); tl.kill(); }
 
-      video.pause(); // Stop autoplay, let GSAP control it
+      video.pause();
+      video.currentTime = 0;
+      currentTimeRef.current = 0;
+      targetTimeRef.current = 0;
 
       const dur = video.duration;
 
@@ -113,10 +146,14 @@ export default function TreeAnimatedWebPSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=2000', // Restored original tighter scrolling duration
-          scrub: 1.2,    // Restored tight tracking
+          end: '+=2500',    // Comfortable scroll distance
+          scrub: 2,         // Higher = smoother interpolation (less jitter)
           pin: true,
           anticipatePin: 1,
+          onUpdate: (self) => {
+            // Set target time — the rAF loop will smoothly interpolate to it
+            targetTimeRef.current = self.progress * dur;
+          },
         },
       });
 
@@ -126,8 +163,10 @@ export default function TreeAnimatedWebPSection() {
       if (quotesLeftRef.current) gsap.set(quotesLeftRef.current.children, { opacity: 0, x: -80 });
       if (quotesRightRef.current) gsap.set(quotesRightRef.current.children, { opacity: 0, x: 80 });
 
-      // ── Phase 0→2: Video scrub (tree grows) ──
-      tl.fromTo(video, { currentTime: 0 }, { currentTime: dur, duration: 2, ease: 'none' }, 0);
+      // We use a dummy tween to drive the timeline progress
+      // Video seeking is handled separately via onUpdate + rAF loop above
+      const proxy = { t: 0 };
+      tl.fromTo(proxy, { t: 0 }, { t: 1, duration: 2, ease: 'none' }, 0);
 
       // ── Phase 0.3→1.3: Left quotes stagger in ──
       if (quotesLeftRef.current) {
@@ -154,8 +193,6 @@ export default function TreeAnimatedWebPSection() {
       }, 1.5);
 
       // ── Phase 2.2→2.8: SAND VAPORIZE EXIT ──
-
-      // Quotes scatter outward and dissolve
       if (quotesLeftRef.current) {
         tl.to(quotesLeftRef.current.children, {
           opacity: 0, x: -120, scale: 0.5, duration: 0.5, stagger: 0.08, ease: 'power2.in',
@@ -167,23 +204,18 @@ export default function TreeAnimatedWebPSection() {
         }, 2.2);
       }
 
-      // Fruits dissolve
       tl.to(fruitOverlayRef.current, {
         opacity: 0, scale: 0.7, duration: 0.4, ease: 'power2.in',
       }, 2.3);
 
-      // Bottom text dissolves
       tl.to(textOverlayRef.current, {
         opacity: 0, y: -20, duration: 0.3, ease: 'power2.in',
       }, 2.3);
 
-      // Video fades to black
       tl.to(videoRef.current, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 2.4);
-
-      // Content wrapper fades
       tl.to(contentWrapRef.current, { opacity: 0, duration: 0.6, ease: 'power2.in' }, 2.4);
 
-      // Canvas particle burst — fire once when we approach exit phase
+      // Canvas particle burst
       tl.call(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -209,7 +241,7 @@ export default function TreeAnimatedWebPSection() {
       if (v) v.removeEventListener('loadedmetadata', init);
       if (stopParticles) stopParticles();
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   // ── Resize canvas when window changes ──
   useEffect(() => {
@@ -228,43 +260,50 @@ export default function TreeAnimatedWebPSection() {
     <section
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden bg-black"
+      style={{ willChange: 'transform' }}
     >
-      {/* ── Unified Scaled Container for Video & Fruits ── */}
+      {/* ── Video + Fruit Container ── */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-10">
         <div 
-          className="relative w-full h-full flex items-center justify-center scale-[1.7] md:scale-[1.15] translate-y-[-5%] md:translate-y-[6%]"
-          style={{ maxWidth: '1400px' }}
+          className="relative w-full h-full flex items-center justify-center"
+          style={{ 
+            maxWidth: '1400px',
+            willChange: 'transform',
+          }}
         >
-          {/* Inner 16:9 container that exactly matches video dimensions */}
+          {/* Responsive video container — no forced scale transforms */}
           <div 
-            className="relative w-full"
+            className="relative w-[95vw] sm:w-[90vw] md:w-full max-h-[85vh] md:max-h-none"
             style={{
-               aspectRatio: '16/9',
-               maxWidth: 'calc(100vh * (16/9))'
+              aspectRatio: '16 / 9',
+              maxWidth: 'calc(100vh * (16/9))',
             }}
           >
             <video
               ref={videoRef}
               src="/videos/tree-scroll-anim-intra.mp4"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-              style={{ objectPosition: 'center 60%' }}
+              style={{ 
+                objectPosition: 'center 55%',
+                willChange: 'opacity',
+              }}
               playsInline
               muted
-              autoPlay
               preload="auto"
               poster="/images/tree-fallback.png"
             />
-            {/* ── Fruit Overlay (centered over the tree) ── */}
+            {/* ── Fruit Overlay ── */}
             <div
               ref={fruitOverlayRef}
               className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              style={{ willChange: 'transform, opacity' }}
             >
               <div className="relative w-full h-full pointer-events-auto">
                 <FruitOverlay
                   onFruitClick={handleFruitClick}
                   onFruitHover={handleFruitHover}
                   hoveredFruit={hoveredFruit}
-                  prefersReducedMotion={false}
+                  prefersReducedMotion={prefersReducedMotion}
                 />
               </div>
             </div>
@@ -281,15 +320,15 @@ export default function TreeAnimatedWebPSection() {
       {/* ── Content wrapper (everything that dissolves) ── */}
       <div ref={contentWrapRef} className="absolute inset-0 z-20 pointer-events-none">
 
-        {/* ── Left Quotes ── */}
+        {/* ── Left Quotes (hidden on very small screens) ── */}
         <div
           ref={quotesLeftRef}
-          className="absolute left-0 top-[15%] md:top-0 bottom-auto md:bottom-0 w-[140px] md:w-[220px] lg:w-[280px] flex flex-col justify-center gap-6 md:gap-12 pl-2 md:pl-6 lg:pl-10 pointer-events-none z-20"
+          className="absolute left-0 top-0 bottom-0 w-[120px] sm:w-[140px] md:w-[220px] lg:w-[280px] hidden sm:flex flex-col justify-center gap-4 sm:gap-6 md:gap-12 pl-2 md:pl-6 lg:pl-10 pointer-events-none z-20"
         >
           {leftQuotes.map((quote) => (
             <p
               key={quote.id}
-              className="font-serif text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed drop-shadow-lg"
+              className="font-serif text-[11px] sm:text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed drop-shadow-lg"
               style={{
                 color: colors.gold,
                 textShadow: '0 0 20px rgba(217,195,154,0.3), 0 2px 4px rgba(0,0,0,0.6)',
@@ -300,15 +339,15 @@ export default function TreeAnimatedWebPSection() {
           ))}
         </div>
 
-        {/* ── Right Quotes ── */}
+        {/* ── Right Quotes (hidden on very small screens) ── */}
         <div
           ref={quotesRightRef}
-          className="absolute right-0 top-[15%] md:top-0 bottom-auto md:bottom-0 w-[140px] md:w-[220px] lg:w-[280px] flex flex-col justify-center gap-6 md:gap-12 pr-2 md:pr-6 lg:pr-10 pointer-events-none z-20"
+          className="absolute right-0 top-0 bottom-0 w-[120px] sm:w-[140px] md:w-[220px] lg:w-[280px] hidden sm:flex flex-col justify-center gap-4 sm:gap-6 md:gap-12 pr-2 md:pr-6 lg:pr-10 pointer-events-none z-20"
         >
           {rightQuotes.map((quote) => (
             <p
               key={quote.id}
-              className="font-serif text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed text-right drop-shadow-lg"
+              className="font-serif text-[11px] sm:text-[13px] md:text-base lg:text-lg italic leading-tight md:leading-relaxed text-right drop-shadow-lg"
               style={{
                 color: colors.gold,
                 textShadow: '0 0 20px rgba(217,195,154,0.3), 0 2px 4px rgba(0,0,0,0.6)',
@@ -319,15 +358,13 @@ export default function TreeAnimatedWebPSection() {
           ))}
         </div>
 
-
-
         {/* ── Bottom Text ── */}
         <div
           ref={textOverlayRef}
-          className="absolute bottom-10 md:bottom-16 left-0 right-0 text-center pointer-events-none z-30"
+          className="absolute bottom-8 sm:bottom-10 md:bottom-16 left-0 right-0 text-center pointer-events-none z-30 px-4"
         >
           <p
-            className="font-serif text-2xl md:text-4xl lg:text-5xl italic tracking-wide"
+            className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl italic tracking-wide"
             style={{
               color: colors.linen,
               textShadow: '0 0 30px rgba(217,195,154,0.4), 0 2px 8px rgba(0,0,0,0.7)',
