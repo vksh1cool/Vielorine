@@ -38,7 +38,6 @@ export default function Navigation() {
     { href: '/', label: 'Home', icon: Moon },
     { href: '/blogs', label: 'Blogs', icon: BookOpen },
     { href: '/shop', label: 'Shop', icon: Sun },
-    { href: '/contact', label: 'Contact', icon: Feather },
   ];
 
   const handleNavClick = (href: string) => {
@@ -143,6 +142,7 @@ export default function Navigation() {
               })}
               <Link
                 href="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="inline-flex items-center justify-center gap-2 px-4 py-3 border border-forest text-forest rounded-full font-serif text-lg tracking-wide hover:bg-forest hover:text-linen transition-all duration-300 mt-4 interactive"
               >
                 <Sparkles className="w-5 h-5" />

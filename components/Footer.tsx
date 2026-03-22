@@ -1,18 +1,16 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 /**
  * Footer component - Minimal footer with brand and links
- * 
- * Features:
- * - Linen background with top border
- * - Centered "Vielorine" brand (3xl)
- * - Horizontal link list (Home, Blogs, Shop, Contact)
- * - Copyright and "Designed with intention" tagline
- * - Border separators (shadow gray 10%)
+ * Includes fade-in reveal animation on scroll
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { ref: footerRef, isVisible } = useScrollReveal<HTMLElement>();
 
   const links = [
     { label: 'Home', href: '/' },
@@ -22,7 +20,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-linen border-t border-shadow/10">
+    <footer
+      ref={footerRef}
+      className="bg-linen border-t border-shadow/10"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
+    >
       {/* Top section */}
       <div className="py-16 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto text-center">
@@ -78,3 +83,4 @@ export default function Footer() {
     </footer>
   );
 }
+

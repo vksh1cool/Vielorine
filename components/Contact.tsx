@@ -1,22 +1,31 @@
 'use client';
 
 import ContactForm from './ContactForm';
-import TarotCardTrail from './TarotCardTrail';
-import { Mail, Instagram, Twitter, MapPin } from 'lucide-react';
+import { Mail, Instagram, Twitter, MapPin, Star, Moon, Sun } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 /**
- * Contact section - Contact form and map placeholder
+ * Contact section - Contact form and location info
  * 
  * Features:
  * - Forest green background with linen text
  * - Two-column layout (stacked on mobile)
  * - Left: form, email, social icons
- * - Right: map placeholder with location card
+ * - Right: mystical panel with location card
  */
 export default function Contact() {
+  const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 lg:px-24 bg-forest">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" ref={sectionRef} className="py-24 px-6 md:px-12 lg:px-24 bg-forest">
+      <div
+        className="max-w-7xl mx-auto"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+          transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left column: Form and contact info */}
           <div className="space-y-8">
@@ -72,22 +81,19 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right column: Interactive tarot card trail area */}
-          <div className="relative bg-forest/80 rounded-2xl overflow-hidden min-h-[400px] border border-dashed border-linen/30">
-            {/* Dotted pattern background */}
-            <div className="absolute inset-0 opacity-20">
-              <svg viewBox="0 0 400 300" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <circle cx="10" cy="10" r="1" fill="currentColor" className="text-linen" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-              </svg>
+          {/* Right column: Mystical panel with location */}
+          <div className="relative bg-forest/60 rounded-2xl overflow-hidden min-h-[400px] border border-linen/10">
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-linen/5 via-transparent to-gold/5" />
+            
+            {/* Mystical symbols */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-10">
+              <div className="flex gap-12 items-center">
+                <Star className="w-16 h-16 text-gold" />
+                <Moon className="w-20 h-20 text-linen" />
+                <Sun className="w-16 h-16 text-gold" />
+              </div>
             </div>
-
-            {/* Tarot card trail - follows cursor */}
-            <TarotCardTrail />
 
             {/* Location card */}
             <div className="absolute bottom-6 left-6 right-6 bg-linen/95 backdrop-blur-sm rounded-xl p-4">
@@ -110,3 +116,4 @@ export default function Contact() {
     </section>
   );
 }
+

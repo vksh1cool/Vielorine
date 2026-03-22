@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-
+import { useEffect, useRef, useCallback } from 'react';
 import ZodiacWheelSVG from './ZodiacWheelSVG';
 
 // Calculate hero tree rotation based on scroll position
@@ -10,23 +9,46 @@ export function calculateHeroTreeRotation(scrollY: number): number {
 }
 
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0);
-  const [cursorTilt, setCursorTilt] = useState({ x: 0, y: 0 });
   const wheelContainerRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const wheelInnerRef = useRef<HTMLDivElement>(null);
 
-  // No more continuous wheel rotation via state, will use CSS animation
-
+  // Use RAF-based scroll and mouse handlers to avoid React re-renders
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    let rafId: number;
+    let lastScrollY = 0;
+
+    const updateScroll = () => {
+      const scrollY = window.scrollY;
+      if (Math.abs(scrollY - lastScrollY) < 1) return;
+      lastScrollY = scrollY;
+
+      // Zodiac wheel shrinks as user scrolls
+      const wheelScale = Math.max(0.4, 1 - scrollY / 1000);
+      const wheelOpacity = Math.max(0.15, 0.5 - scrollY / 1500);
+
+      if (wheelContainerRef.current) {
+        wheelContainerRef.current.style.transform = `scale(${wheelScale})`;
+        wheelContainerRef.current.style.opacity = String(wheelOpacity);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
-  // Cursor interaction for subtle wheel tilt
+  // Cursor interaction for subtle wheel tilt (desktop only, via refs)
   useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth < 768) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!wheelContainerRef.current) return;
       
@@ -34,27 +56,30 @@ export default function Hero() {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Calculate distance from center (normalized -1 to 1)
       const deltaX = (e.clientX - centerX) / (rect.width / 2);
       const deltaY = (e.clientY - centerY) / (rect.height / 2);
       
-      // Only apply effect when cursor is near the wheel
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
       if (distance < 1.5) {
-        // Subtle tilt effect (max 8 degrees)
         const tiltX = deltaY * 8 * Math.max(0, 1 - distance * 0.5);
         const tiltY = -deltaX * 8 * Math.max(0, 1 - distance * 0.5);
-        setCursorTilt({ x: tiltX, y: tiltY });
+        if (wheelInnerRef.current) {
+          wheelInnerRef.current.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        }
       } else {
-        setCursorTilt({ x: 0, y: 0 });
+        if (wheelInnerRef.current) {
+          wheelInnerRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        }
       }
     };
 
     const handleMouseLeave = () => {
-      setCursorTilt({ x: 0, y: 0 });
+      if (wheelInnerRef.current) {
+        wheelInnerRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
@@ -62,23 +87,19 @@ export default function Hero() {
     };
   }, []);
 
-  const handleBookReading = () => {
+  const handleBookReading = useCallback(() => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  const handleExploreTarot = () => {
+  const handleExploreTarot = useCallback(() => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  // Zodiac wheel shrinks as user scrolls
-  const wheelScale = Math.max(0.4, 1 - scrollY / 1000);
-  const wheelOpacity = Math.max(0.15, 0.5 - scrollY / 1500);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -92,19 +113,23 @@ export default function Hero() {
         />
       </div>
 
-      {/* Rotating Zodiac Wheel behind hero content - smaller to fit within viewport */}
+      {/* Rotating Zodiac Wheel behind hero content */}
       <div 
         ref={wheelContainerRef}
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
         aria-hidden="true"
         style={{
-          transform: `scale(${wheelScale}) perspective(1000px) rotateX(${cursorTilt.x}deg) rotateY(${cursorTilt.y}deg)`,
-          opacity: wheelOpacity,
-          transition: 'transform 0.4s ease-out, opacity 0.3s ease-out',
+          transition: 'opacity 0.3s ease-out',
+          willChange: 'transform, opacity',
         }}
       >
-        {/* Zodiac SVG Background with Parallax and CSS Spin */}
-        <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-40 mix-blend-multiply">
+        <div 
+          ref={wheelInnerRef}
+          className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-40 mix-blend-multiply"
+          style={{
+            transition: 'transform 0.4s ease-out',
+          }}
+        >
           <style jsx>{`
             @keyframes slowSpin {
               from { transform: rotate(0deg); }
@@ -121,8 +146,8 @@ export default function Hero() {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
-        {/* Mystical Guidance badge - higher z-index and background for visibility */}
+      <div ref={heroContentRef} className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
+        {/* Mystical Guidance badge */}
         <div className="inline-block mb-8">
           <span className="px-4 py-2 border border-gold rounded-full text-gold text-sm uppercase tracking-widest font-sans bg-linen/80 backdrop-blur-sm">
             Mystical Guidance

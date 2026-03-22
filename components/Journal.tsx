@@ -3,22 +3,30 @@
 import { articles } from '@/lib/data/articles';
 import { ArticleCard } from './ArticleCard';
 import { ArrowRight } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 /**
- * Journal section - Blog cards grid
- * 
- * Features:
- * - Header with "Journal" label, "Words of Wisdom" heading
- * - "View all articles" link (desktop only)
- * - Responsive grid (1 col mobile, 3 col desktop)
- * - Renders 3 ArticleCard components
+ * Journal section - Blog cards grid with staggered reveal
  */
 export default function Journal() {
+  const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
-    <section id="journal" className="py-24 px-6 md:px-12 lg:px-24 bg-[#EAE3D2]/80">
+    <section
+      id="journal"
+      ref={sectionRef}
+      className="py-24 px-6 md:px-12 lg:px-24 bg-[#EAE3D2]/80"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div
+          className="flex flex-col md:flex-row md:items-end md:justify-between mb-12"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
           <div>
             {/* Label */}
             <span className="text-gold text-sm uppercase tracking-widest font-sans">
@@ -40,10 +48,19 @@ export default function Journal() {
           </a>
         </div>
 
-        {/* Articles grid */}
+        {/* Articles grid with staggered animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.slice(0, 3).map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {articles.slice(0, 3).map((article, index) => (
+            <div
+              key={article.id}
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+                transition: `opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${0.15 + index * 0.12}s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${0.15 + index * 0.12}s`,
+              }}
+            >
+              <ArticleCard article={article} />
+            </div>
           ))}
         </div>
       </div>

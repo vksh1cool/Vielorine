@@ -1,15 +1,36 @@
 'use client';
 
 import Image from 'next/image';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function About() {
+  const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
-    <section id="about" className="py-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="py-24 px-6 md:px-12 lg:px-24"
+    >
+      <div
+        className="max-w-7xl mx-auto"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+          transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+      >
         {/* Two-column grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column: Image */}
-          <div className="relative aspect-[4/5] bg-sage rounded-2xl overflow-hidden shadow-2xl">
+          <div
+            className="relative aspect-[4/5] bg-sage rounded-2xl overflow-hidden shadow-2xl"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'scale(1)' : 'scale(0.95)',
+              transition: 'opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s',
+            }}
+          >
             <Image
               src="/images/riddhi_soul.png"
               alt="Riddhi Soul"
@@ -22,7 +43,14 @@ export default function About() {
           </div>
 
           {/* Right column: Content */}
-          <div className="space-y-8">
+          <div
+            className="space-y-8"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
+              transition: 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s',
+            }}
+          >
             {/* Heading */}
             <h2 className="font-serif text-4xl md:text-5xl text-shadow leading-tight">
               The Soul Behind{' '}

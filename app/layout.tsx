@@ -4,7 +4,6 @@ import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
 import Navigation from "@/components/Navigation";
 import BackgroundParticles from "@/components/BackgroundParticles";
-import FloatingContact from "@/components/FloatingContact";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -43,8 +42,8 @@ export default function RootLayout({
         <CustomCursor />
         <Navigation />
         {children}
-        <FloatingContact />
       </body>
     </html>
   );
 }
+

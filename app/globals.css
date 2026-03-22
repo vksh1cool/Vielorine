@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+/* Note: No scroll-behavior: smooth here — it conflicts with GSAP ScrollTrigger.
+   Smooth scrolling for nav links is handled via JS scrollIntoView() instead. */
 
 body {
   background-color: #F3EDE2;
@@ -54,4 +53,66 @@ body {
   }
 }
 
+/* ── Scroll Reveal Animations ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Section transitions for smoother feel */
+section {
+  transition: background-color 0.6s ease;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.4s ease;
+}
+
+/* ── Custom Cursor Styles ── */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #A7B88A;
+  background: transparent;
+  will-change: transform;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cursor-outline.cursor-hover {
+  border-color: #D9C39A;
+  background-color: rgba(217, 195, 154, 0.2);
+}
 

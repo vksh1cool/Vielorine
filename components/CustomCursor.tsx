@@ -1,119 +1,122 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { useCursorPosition } from '@/hooks/useCursorPosition';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { useEffect, useRef, useState } from 'react';
 
 /**
- * CustomCursor component - Dual-element cursor system
+ * CustomCursor component - High-performance dual-element cursor
  * 
- * Features:
- * - cursor-dot (8px, forest green) - follows mouse instantly
- * - cursor-outline (40px, sage border) - follows with 500ms animation
- * - Scales to 60px with gold background on interactive element hover
- * - Hidden on mobile (below md breakpoint)
- * - Respects reduced motion preference
+ * Uses requestAnimationFrame + direct DOM manipulation instead of React state
+ * to avoid ~60 re-renders/sec. The dot follows instantly via mousemove,
+ * and the outline lerps toward the dot position each frame.
+ * 
+ * Hidden on mobile (below md breakpoint).
+ * 
+ * ============================================================================
+ * ⚠️ CRITICAL HYDRATION & CSS PREVENTION WARNING ⚠️
+ * ============================================================================
+ * DO NOT USE `<style jsx>` tags inside this component (or conditionally render them).
+ * Next.js App Router strongly dislikes dynamically injected JSX styles inside 
+ * Client Components, especially when conditionally returned based on state or 
+ * mounted status. It causes severe hydration mismatches that wipe out the entire
+ * page's CSS, resulting in bare unstyled HTML (404 for layout.css).
+ * 
+ * All CSS for this component MUST be kept in `app/globals.css`.
+ * ============================================================================
  */
 export function CustomCursor() {
-  const position = useCursorPosition();
-  const prefersReducedMotion = useReducedMotion();
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
+  const mousePos = useRef({ x: -100, y: -100 });
+  const outlinePos = useRef({ x: -100, y: -100 });
+  const isHovering = useRef(false);
+  const rafId = useRef(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Track outline position for smooth animation
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Show cursor after first mouse move
-    const handleFirstMove = () => {
-      setIsVisible(true);
-    };
-    window.addEventListener('mousemove', handleFirstMove, { once: true });
-
-    return () => {
-      window.removeEventListener('mousemove', handleFirstMove);
-    };
-  }, []);
-
-
-  // Detect hover over interactive elements
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
+    // Don't run on mobile
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return;
 
     const interactiveSelectors = 'a, button, input, textarea, .interactive, [role="button"]';
 
-    const handleMouseOver = (event: MouseEvent) => {
-      const target = event.target as Element;
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePos.current = { x: e.clientX, y: e.clientY };
+      if (!isVisible) setIsVisible(true);
+
+      // Move dot instantly (no React re-render)
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      }
+    };
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as Element;
       if (target.closest(interactiveSelectors)) {
-        setIsHovering(true);
+        isHovering.current = true;
+        if (outlineRef.current) {
+          outlineRef.current.classList.add('cursor-hover');
+        }
       }
     };
 
-    const handleMouseOut = (event: MouseEvent) => {
-      const target = event.target as Element;
-      const relatedTarget = event.relatedTarget as Element | null;
-      
-      // Only set hovering to false if we're not moving to another interactive element
-      if (target.closest(interactiveSelectors) && 
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as Element;
+      const relatedTarget = e.relatedTarget as Element | null;
+      if (target.closest(interactiveSelectors) &&
           (!relatedTarget || !relatedTarget.closest(interactiveSelectors))) {
-        setIsHovering(false);
+        isHovering.current = false;
+        if (outlineRef.current) {
+          outlineRef.current.classList.remove('cursor-hover');
+        }
       }
     };
 
+    // Smooth outline follow loop
+    const animate = () => {
+      const lerp = 0.12; // Lower = smoother trail
+      outlinePos.current.x += (mousePos.current.x - outlinePos.current.x) * lerp;
+      outlinePos.current.y += (mousePos.current.y - outlinePos.current.y) * lerp;
+
+      if (outlineRef.current) {
+        const scale = isHovering.current ? 1.5 : 1;
+        outlineRef.current.style.transform = `translate(${outlinePos.current.x}px, ${outlinePos.current.y}px) translate(-50%, -50%) scale(${scale})`;
+      }
+
+      rafId.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
+    rafId.current = requestAnimationFrame(animate);
 
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
+      cancelAnimationFrame(rafId.current);
     };
-  }, []);
+  }, [isVisible]);
 
-  // Don't render on server or if not visible yet
-  if (!isVisible) {
-    return null;
-  }
-
-  // Calculate outline position with animation delay (handled via CSS transition)
-  const dotStyle: React.CSSProperties = {
-    left: position.x,
-    top: position.y,
-    transform: 'translate(-50%, -50%)',
-  };
-
-  const outlineStyle: React.CSSProperties = {
-    left: position.x,
-    top: position.y,
-    transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
-    transition: 'left 500ms ease-out, top 500ms ease-out, transform 200ms ease-out, background-color 200ms ease-out, border-color 200ms ease-out',
-  };
+  if (!isVisible) return null;
 
   return (
     <>
-      {/* Cursor Dot - 8px, forest green, instant follow */}
+      {/* Cursor Dot */}
       <div
-        className="fixed pointer-events-none z-[9999] hidden md:block"
-        style={dotStyle}
+        ref={dotRef}
+        className="cursor-dot hidden md:block"
         aria-hidden="true"
       >
-        <div 
-          className="w-2 h-2 bg-forest rounded-full"
-          style={{ 
-            transition: prefersReducedMotion ? 'none' : 'transform 100ms ease-out' 
-          }}
-        />
+        <div className="w-2 h-2 bg-forest rounded-full" />
       </div>
 
-      {/* Cursor Outline - 40px (60px on hover), sage border, 500ms animation */}
+      {/* Cursor Outline */}
       <div
         ref={outlineRef}
-        className={`fixed pointer-events-none z-[9998] hidden md:block w-10 h-10 rounded-full border-2 ${
-          isHovering 
-            ? 'border-gold bg-gold/20' 
-            : 'border-sage bg-transparent'
-        }`}
-        style={outlineStyle}
+        className="cursor-outline hidden md:block"
         aria-hidden="true"
       />
     </>
