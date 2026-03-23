@@ -59,13 +59,35 @@ export default function ContactForm() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
     
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    setErrors({});
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/readforme@vielorine.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            _subject: "New Website Contact Form Submission!"
+        })
+      });
+
+      if (response.ok) {
+        setFormData({ name: '', email: '', message: '' });
+        setErrors({});
+        alert("Your message has been sent successfully. We will be in touch soon!");
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message. Please check your internet connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClasses = "w-full bg-transparent border-b border-sage/30 py-3 text-linen placeholder:text-linen/50 focus:border-gold focus:outline-none transition-colors";

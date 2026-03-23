@@ -43,11 +43,13 @@ export default function ContactPage() {
               {/* Contact Info */}
               <div className="mt-12 pt-8 border-t border-linen/20">
                 <a 
-                  href="mailto:hello@vielorine.com"
-                  className="flex items-center gap-3 text-linen/80 hover:text-gold transition-colors mb-4 interactive"
+                  href="mailto:readforme@vielorine.com"
+                  className="flex items-center gap-4 group p-4 rounded-xl hover:bg-linen/10 transition-all duration-300"
                 >
-                  <Mail className="w-5 h-5" />
-                  <span className="font-sans">hello@vielorine.com</span>
+                  <div className="w-12 h-12 bg-linen/10 rounded-full flex items-center justify-center text-linen group-hover:bg-gold group-hover:text-forest transition-all duration-300 shrink-0">
+                    <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <span className="font-sans text-lg text-linen/90 group-hover:text-gold transition-colors">readforme@vielorine.com</span> 
                 </a>
                 
                 {/* Social Links */}

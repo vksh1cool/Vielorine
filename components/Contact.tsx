@@ -3,6 +3,7 @@
 import ContactForm from './ContactForm';
 import { Mail, Instagram, Twitter, MapPin, Star, Moon, Sun } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import Stack from './Stack';
 
 /**
  * Contact section - Contact form and location info
@@ -54,11 +55,13 @@ export default function Contact() {
             <div className="pt-8 space-y-4">
               {/* Email */}
               <a 
-                href="mailto:hello@vielorine.com" 
-                className="flex items-center gap-3 text-linen/80 hover:text-gold transition-colors"
+                href="mailto:readforme@vielorine.com" 
+                className="flex items-center gap-4 group p-4 rounded-xl hover:bg-linen/10 transition-all duration-300"
               >
-                <Mail className="w-5 h-5" />
-                <span>hello@vielorine.com</span>
+                <div className="w-12 h-12 bg-linen/10 rounded-full flex items-center justify-center text-linen group-hover:scale-110 group-hover:bg-gold group-hover:text-forest transition-all duration-300">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <span className="font-sans text-lg text-linen/90 group-hover:text-gold transition-colors">readforme@vielorine.com</span>
               </a>
 
               {/* Social icons */}
@@ -86,12 +89,33 @@ export default function Contact() {
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-linen/5 via-transparent to-gold/5" />
             
-            {/* Mystical symbols */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <div className="flex gap-12 items-center">
-                <Star className="w-16 h-16 text-gold" />
-                <Moon className="w-20 h-20 text-linen" />
-                <Sun className="w-16 h-16 text-gold" />
+            {/* Interactive Tarot Stack */}
+            <div className="absolute inset-0 flex items-center justify-center pt-8 pb-32 lg:pb-36 z-0">
+              <div className="w-[180px] h-[260px] sm:w-[220px] sm:h-[320px] lg:w-[260px] lg:h-[380px] -mt-12 sm:-mt-8 lg:-mt-4">
+                <Stack 
+                  randomRotation={true}
+                  sensitivity={200}
+                  sendToBackOnClick={true}
+                  autoplay={true}
+                  autoplayDelay={3500}
+                  pauseOnHover={true}
+                  cards={[
+                    '/images/tarot-1.jpeg',
+                    '/images/tarot-2.jpeg',
+                    '/images/tarot-3.jpeg',
+                    '/images/tarot-4.jpeg',
+                    '/images/tarot-reading.png',
+                    '/images/astrology-chart.png',
+                    '/images/crystals.png',
+                  ].map((src, i) => (
+                    <img 
+                      key={i} 
+                      src={src} 
+                      alt={`Mystical view ${i + 1}`} 
+                      className="w-full h-full object-cover pointer-events-none" 
+                    />
+                  ))}
+                />
               </div>
             </div>
 

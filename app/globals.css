@@ -12,6 +12,22 @@ body {
 }
 
 /* Custom scrollbar styling */
+
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.1; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes RotateUniverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 ::-webkit-scrollbar {
   width: 8px;
 }

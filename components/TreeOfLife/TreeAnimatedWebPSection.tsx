@@ -292,7 +292,7 @@ export default function TreeAnimatedWebPSection() {
               .tree-video {
                 object-fit: contain;
                 object-position: center center;
-                transform: scale(1.4);
+                transform: scale(1.1);
               }
               @media (min-width: 768px) {
                 .tree-video-container {
@@ -410,7 +410,7 @@ export default function TreeAnimatedWebPSection() {
         {/* ── Bottom Text ── */}
         <div
           ref={textOverlayRef}
-          className="absolute bottom-8 sm:bottom-10 md:bottom-16 left-0 right-0 text-center pointer-events-none z-30 px-4"
+          className="absolute bottom-2 sm:bottom-4 md:bottom-6 left-0 right-0 text-center pointer-events-none z-30 px-4"
         >
           <p
             className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl italic tracking-wide"

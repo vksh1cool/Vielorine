@@ -64,23 +64,25 @@ export default function Navigation() {
       `}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 relative">
           {/* Brand Logo Only */}
-          <Link 
-            href="/" 
-            className="interactive"
-          >
-            <Image
-              src="/images/vielorine-logo.png"
-              alt="Vielorine"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-          </Link>
+          <div className="flex-1 flex justify-start">
+            <Link 
+              href="/" 
+              className="interactive group"
+            >
+              <Image
+                src="/images/vielorine-logo.png"
+                alt="Vielorine"
+                width={40}
+                height={40}
+                className="rounded-full transition-transform duration-300 ease-out group-hover:scale-110"
+              />
+            </Link>
+          </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex flex-none items-center space-x-4 lg:space-x-8">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -88,38 +90,45 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="flex items-center gap-1.5 font-serif text-lg tracking-wide text-shadow hover:text-forest transition-colors duration-300 interactive"
+                  className="group flex items-center justify-center font-serif text-lg tracking-wide text-shadow hover:text-forest transition-colors duration-300 interactive min-w-[80px]"
                 >
-                  <Icon className="w-4 h-4 opacity-70" />
-                  {link.label}
+                  <Icon className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 ease-out" />
+                  <span className="ml-1.5 max-w-[100px] opacity-100 overflow-hidden whitespace-nowrap group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0 transition-all duration-500 ease-out">
+                    {link.label}
+                  </span>
                 </Link>
               );
             })}
           </div>
 
-          {/* Book Reading Button */}
-          <div className="hidden md:block">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2 border border-forest text-forest rounded-full font-serif text-base tracking-wide hover:bg-forest hover:text-linen transition-all duration-300 interactive"
-            >
-              <Sparkles className="w-4 h-4" />
-              Book Reading
-            </Link>
-          </div>
+          {/* Right Action Area */}
+          <div className="flex-1 flex justify-end items-center gap-4">
+            {/* Book Reading Button */}
+            <div className="hidden md:block">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center px-5 py-2 border border-forest text-forest rounded-full font-serif text-base tracking-wide hover:bg-forest hover:text-linen transition-all duration-500 interactive w-[164px]"
+              >
+                <Sparkles className="w-4 h-4 group-hover:scale-[1.8] group-hover:text-gold transition-all duration-500 ease-out" />
+                <span className="ml-2 max-w-[150px] opacity-100 overflow-hidden whitespace-nowrap group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0 transition-all duration-500 ease-out">
+                  Book Reading
+                </span>
+              </Link>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-forest interactive"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-forest interactive"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

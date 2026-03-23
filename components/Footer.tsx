@@ -61,10 +61,14 @@ export default function Footer() {
       {/* Bottom section */}
       <div className="py-8 px-6 md:px-12 lg:px-24 border-t border-shadow/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          {/* Copyright */}
-          <p className="text-shadow/50 text-sm">
-            © {currentYear} Vielorine. All rights reserved.
-          </p>
+          {/* Copyright & Legal */}
+          <div className="flex flex-col md:flex-row items-center gap-4 text-shadow/50 text-sm">
+            <span>© {currentYear} Vielorine. All rights reserved.</span>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy-policy" className="hover:text-forest transition-colors">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="hover:text-forest transition-colors">Terms of Service</Link>
+            </div>
+          </div>
 
           {/* Designer credit */}
           <p className="text-shadow/50 text-sm">
