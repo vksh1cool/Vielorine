@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/blogs/understanding-major-arcana":{},"/blogs/tarot-spreads-beginners":{},"/blogs/cleansing-energy-rituals":{},"/blogs/tarot-career-guidance":{}},"dynamicRoutes":{"/blogs/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blogs/[slug]","routeRegex":"^\\/blogs\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"e61e05c36d6204decdc8ad43584bc3f2","previewModeSigningKey":"3fa0709b4a077e32d3c03417c6ed77b644a0fdbae9ec6397ec4c11fab4552762","previewModeEncryptionKey":"cd95b9aa22e587e48ed6f32661b4cfb9637bfa55a3242558ec59da24f1e5b993"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "6caa820984e4368c2864b6ebee731faa",
+    "previewModeSigningKey": "db25706bf4b982fe30cf729347c5c91164941a4fcca04bd8d0c6d7f7a8d2c228",
+    "previewModeEncryptionKey": "ceec00fdd5f782b6e04f5bbbe51cdab6187b470e47253bfffcfd001b36310e90"
+  }
+}
