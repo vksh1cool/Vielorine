@@ -67,18 +67,13 @@ export default function Contact() {
               {/* Social icons */}
               <div className="flex items-center gap-4">
                 <a 
-                  href="#" 
+                  href="https://www.instagram.com/ree.tarot?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-linen/80 hover:text-gold transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
-                </a>
-                <a 
-                  href="#" 
-                  className="text-linen/80 hover:text-gold transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-5 h-5" />
                 </a>
               </div>
             </div>

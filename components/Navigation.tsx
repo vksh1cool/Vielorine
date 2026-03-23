@@ -10,6 +10,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [navTheme, setNavTheme] = useState<'light' | 'dark'>('light');
   const lastScrollY = useRef(0);
   const pathname = usePathname();
 
@@ -26,6 +27,20 @@ export default function Navigation() {
       } else {
         setIsHidden(false);
       }
+
+      // Determine theme based on sections under the navbar
+      let currentTheme: 'light' | 'dark' = 'light';
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        // Check if the top area (y=80) is intersecting this section
+        if (rect.top <= 80 && rect.bottom >= 80) {
+          if (section.classList.contains('bg-black') || section.classList.contains('bg-forest')) {
+            currentTheme = 'dark';
+          }
+        }
+      });
+      setNavTheme(currentTheme);
 
       lastScrollY.current = currentScrollY;
     };
@@ -58,7 +73,7 @@ export default function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
         ${isHidden ? '-translate-y-full' : 'translate-y-0'}
         ${isScrolled || isMobileMenuOpen
-          ? 'py-2 backdrop-blur-md bg-linen/95 border-b border-sage/20 shadow-sm'
+          ? `py-2 backdrop-blur-xl border-b shadow-sm ${navTheme === 'dark' ? 'bg-black/40 border-white/10' : 'bg-linen/40 border-sage/20'}`
           : 'py-6 bg-transparent border-transparent'
         }
       `}
@@ -90,7 +105,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="group flex items-center justify-center font-serif text-lg tracking-wide text-shadow hover:text-forest transition-colors duration-300 interactive min-w-[80px]"
+                  className={`group flex items-center justify-center font-serif text-lg tracking-wide transition-colors duration-300 interactive min-w-[80px] ${navTheme === 'dark' ? 'text-linen hover:text-gold' : 'text-shadow hover:text-forest'}`}
                 >
                   <Icon className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 ease-out" />
                   <span className="ml-1.5 max-w-[100px] opacity-100 overflow-hidden whitespace-nowrap group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0 transition-all duration-500 ease-out">
@@ -107,7 +122,7 @@ export default function Navigation() {
             <div className="hidden md:block">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center px-5 py-2 border border-forest text-forest rounded-full font-serif text-base tracking-wide hover:bg-forest hover:text-linen transition-all duration-500 interactive w-[164px]"
+                className={`group inline-flex items-center justify-center px-5 py-2 border rounded-full font-serif text-base tracking-wide transition-all duration-500 interactive w-[164px] ${navTheme === 'dark' ? 'border-linen text-linen hover:bg-linen hover:text-forest' : 'border-forest text-forest hover:bg-forest hover:text-linen'}`}
               >
                 <Sparkles className="w-4 h-4 group-hover:scale-[1.8] group-hover:text-gold transition-all duration-500 ease-out" />
                 <span className="ml-2 max-w-[150px] opacity-100 overflow-hidden whitespace-nowrap group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0 transition-all duration-500 ease-out">
@@ -118,7 +133,7 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-forest interactive"
+              className={`md:hidden p-2 interactive ${navTheme === 'dark' ? 'text-linen' : 'text-forest'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -133,7 +148,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-sage/20">
+          <div className={`md:hidden py-4 border-t ${navTheme === 'dark' ? 'border-white/10' : 'border-sage/20'}`}>
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -142,9 +157,9 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className="flex items-center gap-3 font-serif text-xl tracking-wide text-shadow hover:text-forest transition-colors duration-300 py-2 interactive"
+                    className={`flex items-center gap-3 font-serif text-xl tracking-wide transition-colors duration-300 py-2 interactive ${navTheme === 'dark' ? 'text-linen hover:text-gold' : 'text-shadow hover:text-forest'}`}
                   >
-                    <Icon className="w-5 h-5 text-forest/70" />
+                    <Icon className={`w-5 h-5 ${navTheme === 'dark' ? 'text-linen/70' : 'text-forest/70'}`} />
                     {link.label}
                   </Link>
                 );
@@ -152,7 +167,7 @@ export default function Navigation() {
               <Link
                 href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 border border-forest text-forest rounded-full font-serif text-lg tracking-wide hover:bg-forest hover:text-linen transition-all duration-300 mt-4 interactive"
+                className={`inline-flex items-center justify-center gap-2 px-4 py-3 border rounded-full font-serif text-lg tracking-wide transition-all duration-300 mt-4 interactive ${navTheme === 'dark' ? 'border-linen text-linen hover:bg-linen hover:text-forest' : 'border-forest text-forest hover:bg-forest hover:text-linen'}`}
               >
                 <Sparkles className="w-5 h-5" />
                 Book Reading
