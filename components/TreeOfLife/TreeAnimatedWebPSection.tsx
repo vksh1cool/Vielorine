@@ -74,6 +74,18 @@ function animateParticles(
   return () => { alive = false; };
 }
 
+// ─── Helpers ────────────────────────────────────────────────────────────
+function isIOSDevice() {
+  if (typeof navigator === 'undefined') return false;
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function isMobileDevice() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768 || isIOSDevice();
+}
+
 // ─── Component ──────────────────────────────────────────────────────────
 export default function TreeAnimatedWebPSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -91,6 +103,8 @@ export default function TreeAnimatedWebPSection() {
   const targetTimeRef = useRef(0);
   const currentTimeRef = useRef(0);
   const rafIdRef = useRef<number>(0);
+  const videoReadyRef = useRef(false);
+  const blobUrlRef = useRef<string | null>(null);
 
   const [selectedFruit, setSelectedFruit] = useState<string | null>(null);
   const [hoveredFruit, setHoveredFruit] = useState<string | null>(null);
@@ -99,15 +113,89 @@ export default function TreeAnimatedWebPSection() {
   const handleFruitHover = useCallback((id: string | null) => setHoveredFruit(id), []);
   const handleClosePopup = useCallback(() => setSelectedFruit(null), []);
 
+  // ── Blob-based preload for iOS/mobile ──
+  // iOS Safari cannot seek through a streaming video. Fetching the entire
+  // MP4 as a blob forces the full file into memory, making currentTime
+  // seeking instant and reliable.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const mobile = isMobileDevice();
+    if (!mobile) {
+      // Desktop: keep native src, mark ready immediately
+      videoReadyRef.current = true;
+      return;
+    }
+
+    let cancelled = false;
+
+    const preloadAsBlob = async () => {
+      try {
+        const resp = await fetch('/videos/tree-scroll-anim-intra.mp4');
+        if (cancelled) return;
+        const blob = await resp.blob();
+        if (cancelled) return;
+
+        const url = URL.createObjectURL(blob);
+        blobUrlRef.current = url;
+        video.src = url;
+        video.load();
+
+        // Wait until the browser has enough data to seek freely
+        await new Promise<void>((resolve) => {
+          const onReady = () => { resolve(); video.removeEventListener('canplaythrough', onReady); };
+          if (video.readyState >= 4) { resolve(); return; }
+          video.addEventListener('canplaythrough', onReady);
+        });
+        if (cancelled) return;
+
+        // "Unlock" the video on iOS: a brief play→pause makes seeking work
+        try {
+          await video.play();
+          video.pause();
+        } catch {
+          // play() may reject on iOS if user hasn't interacted yet — that's OK
+        }
+
+        video.currentTime = 0.001; // force first frame render
+        videoReadyRef.current = true;
+
+        // Dispatch a custom event so the GSAP timeline knows we're ready
+        video.dispatchEvent(new Event('videoready'));
+      } catch {
+        // Network error — fall back to normal src attribute loading
+        videoReadyRef.current = true;
+        video.dispatchEvent(new Event('videoready'));
+      }
+    };
+
+    preloadAsBlob();
+
+    return () => {
+      cancelled = true;
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+        blobUrlRef.current = null;
+      }
+    };
+  }, []);
+
   // ── Smooth video seeking loop ──
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const seekLoop = () => {
+      if (!videoReadyRef.current) {
+        rafIdRef.current = requestAnimationFrame(seekLoop);
+        return;
+      }
       const target = targetTimeRef.current;
       const current = currentTimeRef.current;
-      const next = current + (target - current) * 0.15;
+      // Use a faster lerp on mobile for snappier response
+      const lerpFactor = isMobileDevice() ? 0.25 : 0.15;
+      const next = current + (target - current) * lerpFactor;
       if (Math.abs(next - current) > 0.01) {
         video.currentTime = next;
         currentTimeRef.current = next;
@@ -240,13 +328,27 @@ export default function TreeAnimatedWebPSection() {
 
     const v = videoRef.current;
     if (v) {
-      if (v.readyState >= 1) init();
-      else v.addEventListener('loadedmetadata', init);
+      const mobile = isMobileDevice();
+      if (mobile) {
+        // On mobile, wait for our blob preload to finish
+        if (videoReadyRef.current && v.duration) {
+          init();
+        } else {
+          v.addEventListener('videoready', init);
+        }
+      } else {
+        // Desktop: standard approach
+        if (v.readyState >= 1) init();
+        else v.addEventListener('loadedmetadata', init);
+      }
     }
 
     return () => {
       if (tl) { tl.scrollTrigger?.kill(); tl.kill(); }
-      if (v) v.removeEventListener('loadedmetadata', init);
+      if (v) {
+        v.removeEventListener('loadedmetadata', init);
+        v.removeEventListener('videoready', init);
+      }
       if (stopParticles) stopParticles();
     };
   }, [prefersReducedMotion]);
