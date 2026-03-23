@@ -16,17 +16,17 @@ export default function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Highlight nav when scrolled past very top
       setIsScrolled(currentScrollY > 20);
-      
+
       // Hide on scroll down, show on scroll up (don't hide if mobile menu is open)
       if (currentScrollY > lastScrollY.current && currentScrollY > 150 && !isMobileMenuOpen) {
         setIsHidden(true);
       } else {
         setIsHidden(false);
       }
-      
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -54,11 +54,11 @@ export default function Navigation() {
   const isHashLink = (href: string) => href.includes('#');
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
         ${isHidden ? '-translate-y-full' : 'translate-y-0'}
         ${isScrolled || isMobileMenuOpen
-          ? 'py-2 backdrop-blur-md bg-linen/95 border-b border-sage/20 shadow-sm' 
+          ? 'py-2 backdrop-blur-md bg-linen/95 border-b border-sage/20 shadow-sm'
           : 'py-6 bg-transparent border-transparent'
         }
       `}
@@ -67,8 +67,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 relative">
           {/* Brand Logo Only */}
           <div className="flex-1 flex justify-start">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="interactive group"
             >
               <Image

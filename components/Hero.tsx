@@ -24,9 +24,10 @@ export default function Hero() {
       if (Math.abs(scrollY - lastScrollY) < 1) return;
       lastScrollY = scrollY;
 
-      // Zodiac wheel shrinks as user scrolls
-      const wheelScale = Math.max(0.4, 1 - scrollY / 1000);
-      const wheelOpacity = Math.max(0.05, 1 - scrollY / 600);
+      // Zodiac wheel zooms in as user scrolls (scale grows beyond 1 → fills screen → disappears)
+      const progress = Math.min(scrollY / 700, 1); // 0→1 over first 700px of scroll
+      const wheelScale = 1 + progress * 5;          // 1× at top → 6× at end
+      const wheelOpacity = Math.max(0, 1 - progress * 1.6); // fades out before max scale
 
       if (wheelContainerRef.current) {
         wheelContainerRef.current.style.transform = `scale(${wheelScale})`;
