@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import ContactForm from './ContactForm';
 import { Mail, Instagram, Twitter, MapPin, Star, Moon, Sun } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -65,15 +67,20 @@ export default function Contact() {
               </a>
 
               {/* Social icons */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-4">
                 <a 
-                  href="https://www.instagram.com/ree.tarot?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                  href="https://ig.me/m/ree.tarot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-linen/80 hover:text-gold transition-colors"
-                  aria-label="Instagram"
+                  className="flex items-center gap-4 group p-4 rounded-xl hover:bg-linen/10 transition-all duration-300 w-fit"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <div className="w-12 h-12 bg-linen/10 rounded-full flex items-center justify-center text-linen group-hover:scale-110 group-hover:bg-gold group-hover:text-forest transition-all duration-300">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-lg text-linen/90 group-hover:text-gold transition-colors">Direct Message on Instagram</span>
+                    <span className="font-sans text-sm text-linen/60 group-hover:text-gold/80 transition-colors">Drafted & ready to send</span>
+                  </div>
                 </a>
               </div>
             </div>
@@ -103,11 +110,13 @@ export default function Contact() {
                     '/images/astrology-chart.png',
                     '/images/crystals.png',
                   ].map((src, i) => (
-                    <img 
+                    <Image 
                       key={i} 
                       src={src} 
                       alt={`Mystical view ${i + 1}`} 
-                      className="w-full h-full object-cover pointer-events-none" 
+                      fill
+                      sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 260px"
+                      className="object-cover pointer-events-none" 
                     />
                   ))}
                 />

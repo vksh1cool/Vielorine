@@ -52,18 +52,21 @@ export default function ContactPage() {
                   <span className="font-sans text-lg text-linen/90 group-hover:text-gold transition-colors">readforme@vielorine.com</span> 
                 </a>
                 
-                {/* Social Links */}
-                <div className="flex items-center gap-4 mt-6">
-                  <a 
-                    href="https://www.instagram.com/ree.tarot?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-linen/60 hover:text-gold transition-colors interactive"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                </div>
+                {/* Direct Message Link */}
+                <a 
+                  href="https://ig.me/m/ree.tarot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 group p-4 mt-2 rounded-xl hover:bg-linen/10 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-linen/10 rounded-full flex items-center justify-center text-linen group-hover:bg-gold group-hover:text-forest transition-all duration-300 shrink-0">
+                    <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-lg text-linen/90 group-hover:text-gold transition-colors">Message on Instagram</span> 
+                    <span className="font-sans text-sm text-linen/60 group-hover:text-gold/80 transition-colors">Start a direct chat</span>
+                  </div>
+                </a>
               </div>
             </div>
 
